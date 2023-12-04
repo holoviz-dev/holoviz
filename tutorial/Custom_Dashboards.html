@@ -1,0 +1,1942 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.19: https://docutils.sourceforge.io/" name="generator"/>
+<title>Custom Dashboards — HoloViz 0.16.3 documentation</title>
+<script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+<!-- Loaded before other Sphinx assets -->
+<link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet"/>
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet"/>
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet"/>
+<link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet"/>
+<link as="font" crossorigin="" href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" rel="preload" type="font/woff2"/>
+<link href="../_static/pygments.css" rel="stylesheet" type="text/css"/>
+<link href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" rel="stylesheet" type="text/css"/>
+<link href="../_static/graphviz.css" rel="stylesheet" type="text/css"/>
+<link href="../_static/copybutton.css" rel="stylesheet" type="text/css"/>
+<link href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" rel="stylesheet" type="text/css"/>
+<link href="../_static/nbsite.css" rel="stylesheet" type="text/css"/>
+<link href="../_static/notebook.css" rel="stylesheet" type="text/css"/>
+<link href="../_static/gallery.css" rel="stylesheet" type="text/css"/>
+<link href="../_static/alert.css" rel="stylesheet" type="text/css"/>
+<link href="../_static/dataframe.css" rel="stylesheet" type="text/css"/>
+<link href="../_static/scroller.css" rel="stylesheet" type="text/css"/>
+<!-- Pre-loaded scripts that we'll load fully later -->
+<link as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" rel="preload"/>
+<link as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" rel="preload"/>
+<script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+<script src="../_static/jquery.js"></script>
+<script src="../_static/underscore.js"></script>
+<script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+<script src="../_static/doctools.js"></script>
+<script src="../_static/sphinx_highlight.js"></script>
+<script src="../_static/clipboard.min.js"></script>
+<script src="../_static/copybutton.js"></script>
+<script src="../_static/design-tabs.js"></script>
+<script>DOCUMENTATION_OPTIONS.pagename = 'tutorial/Custom_Dashboards';</script>
+<link href="../_static/favicon.ico" rel="shortcut icon"/>
+<link href="../about.html" rel="author" title="About these documents"/>
+<link href="../genindex.html" rel="index" title="Index"/>
+<link href="../search.html" rel="search" title="Search"/>
+<link href="Advanced_Dashboards.html" rel="next" title="Advanced Dashboards"/>
+<link href="Custom_Interactivity.html" rel="prev" title="Custom Interactivity"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="en" name="docsearch:language"/>
+</head>
+<body data-bs-root-margin="0px 0px -60%" data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-default-mode="" data-offset="180">
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<input class="sidebar-toggle" id="__primary" name="__primary" type="checkbox"/>
+<label class="overlay overlay-primary" for="__primary"></label>
+<input class="sidebar-toggle" id="__secondary" name="__secondary" type="checkbox"/>
+<label class="overlay overlay-secondary" for="__secondary"></label>
+<div class="search-button__wrapper">
+<div class="search-button__overlay"></div>
+<div class="search-button__search-container">
+<form action="../search.html" class="bd-search d-flex align-items-center" method="get">
+<i class="fa-solid fa-magnifying-glass"></i>
+<input aria-label="Search the docs ..." autocapitalize="off" autocomplete="off" autocorrect="off" class="form-control" id="search-input" name="q" placeholder="Search the docs ..." spellcheck="false" type="search"/>
+<span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+</div>
+<nav class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+<label class="sidebar-toggle primary-toggle" for="__primary">
+<span class="fa-solid fa-bars"></span>
+</label>
+<div class="navbar-header-items__start">
+<div class="navbar-item">
+<a class="navbar-brand logo" href="../index.html">
+<img alt="Logo image" class="logo__image only-light" src="../_static/holoviz-logo-unstacked.svg"/>
+<script>document.write(`<img src="../_static/holoviz-logo-unstacked.svg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+</a></div>
+</div>
+<div class="col-lg-9 navbar-header-items">
+<div class="me-auto navbar-header-items__center">
+<div class="navbar-item"><nav class="navbar-nav">
+<p aria-label="Site Navigation" aria-level="1" class="sidebar-header-items__title" role="heading">
+    Site Navigation
+  </p>
+<ul class="bd-navbar-elements navbar-nav">
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../background.html">
+                        Background
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../installation.html">
+                        Installation
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../talks/index.html">
+                        Talks
+                      </a>
+</li>
+<li class="nav-item current active">
+<a class="nav-link nav-internal" href="index.html">
+                        Tutorial
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-external" href="https://blog.holoviz.org/">
+                        Blog
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../topics/index.html">
+                        Topics
+                      </a>
+</li>
+<div class="nav-item dropdown">
+<button aria-expanded="false" aria-haspopup="true" class="btn dropdown-toggle nav-item" data-bs-toggle="dropdown" type="button">
+                    More
+                </button>
+<div class="dropdown-menu">
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../contributing.html">
+                        Contributing
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../Roadmap.html">
+                        Roadmap
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../FAQ.html">
+                        FAQ
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../about.html">
+                        About
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../community.html">
+                        Community
+                      </a>
+</li>
+</div>
+</div>
+</ul>
+</nav></div>
+</div>
+<div class="navbar-header-items__end">
+<div class="navbar-item navbar-persistent--container">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+</div>
+<div class="navbar-item">
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script></div>
+<div class="navbar-item"><ul aria-label="Icon Links" class="navbar-icon-links navbar-nav">
+<li class="nav-item">
+<a class="nav-link" data-bs-placement="bottom" data-bs-toggle="tooltip" href="https://github.com/holoviz/holoviz" rel="noopener" target="_blank" title="GitHub"><span><i class="fa-brands fa-square-github"></i></span>
+<label class="sr-only">GitHub</label></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" data-bs-placement="bottom" data-bs-toggle="tooltip" href="https://twitter.com/HoloViz_Org" rel="noopener" target="_blank" title="Twitter"><span><i class="fab fa-twitter-square"></i></span>
+<label class="sr-only">Twitter</label></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" data-bs-placement="bottom" data-bs-toggle="tooltip" href="https://discourse.holoviz.org/" rel="noopener" target="_blank" title="Discourse"><span><i class="fab fa-discourse"></i></span>
+<label class="sr-only">Discourse</label></a>
+</li>
+</ul></div>
+</div>
+</div>
+<div class="navbar-persistent--mobile">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+</div>
+<label class="sidebar-toggle secondary-toggle" for="__secondary">
+<span class="fa-solid fa-outdent"></span>
+</label>
+</div>
+</nav>
+<div class="bd-container">
+<div class="bd-container__inner bd-page-width">
+<div class="bd-sidebar-primary bd-sidebar">
+<div class="sidebar-header-items sidebar-primary__section">
+<div class="sidebar-header-items__center">
+<div class="navbar-item"><nav class="navbar-nav">
+<p aria-label="Site Navigation" aria-level="1" class="sidebar-header-items__title" role="heading">
+    Site Navigation
+  </p>
+<ul class="bd-navbar-elements navbar-nav">
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../background.html">
+                        Background
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../installation.html">
+                        Installation
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../talks/index.html">
+                        Talks
+                      </a>
+</li>
+<li class="nav-item current active">
+<a class="nav-link nav-internal" href="index.html">
+                        Tutorial
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-external" href="https://blog.holoviz.org/">
+                        Blog
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../topics/index.html">
+                        Topics
+                      </a>
+</li>
+<div class="nav-item dropdown">
+<button aria-expanded="false" aria-haspopup="true" class="btn dropdown-toggle nav-item" data-bs-toggle="dropdown" type="button">
+                    More
+                </button>
+<div class="dropdown-menu">
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../contributing.html">
+                        Contributing
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../Roadmap.html">
+                        Roadmap
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../FAQ.html">
+                        FAQ
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../about.html">
+                        About
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../community.html">
+                        Community
+                      </a>
+</li>
+</div>
+</div>
+</ul>
+</nav></div>
+</div>
+<div class="sidebar-header-items__end">
+<div class="navbar-item">
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script></div>
+<div class="navbar-item"><ul aria-label="Icon Links" class="navbar-icon-links navbar-nav">
+<li class="nav-item">
+<a class="nav-link" data-bs-placement="bottom" data-bs-toggle="tooltip" href="https://github.com/holoviz/holoviz" rel="noopener" target="_blank" title="GitHub"><span><i class="fa-brands fa-square-github"></i></span>
+<label class="sr-only">GitHub</label></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" data-bs-placement="bottom" data-bs-toggle="tooltip" href="https://twitter.com/HoloViz_Org" rel="noopener" target="_blank" title="Twitter"><span><i class="fab fa-twitter-square"></i></span>
+<label class="sr-only">Twitter</label></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" data-bs-placement="bottom" data-bs-toggle="tooltip" href="https://discourse.holoviz.org/" rel="noopener" target="_blank" title="Discourse"><span><i class="fab fa-discourse"></i></span>
+<label class="sr-only">Discourse</label></a>
+</li>
+</ul></div>
+</div>
+</div>
+<div class="sidebar-primary-items__start sidebar-primary__section">
+<div class="sidebar-primary-item"><nav aria-label="Section Navigation" class="bd-docs-nav bd-links">
+<div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../background.html">Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../talks/index.html">Talks</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../talks/index.html">Overview</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Tutorial</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Setup.html">Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plotting.html">Plotting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Composing_Plots.html">Composing Plots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Interlinked_Plots.html">Interlinked Plots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Interactive_Pipelines.html">Interactive Pipelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Dashboards.html">Dashboards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Custom_Interactivity.html">  Custom Interactivity</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">  Custom Dashboards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Advanced_Dashboards.html">  Advanced Dashboards</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference external" href="https://blog.holoviz.org/">Blog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../topics/index.html">Topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../community.html">Community</a></li>
+</ul>
+</div>
+</nav></div>
+</div>
+<div class="sidebar-primary-items__end sidebar-primary__section">
+</div>
+<div id="rtd-footer-container"></div>
+</div>
+<main class="bd-main" id="main-content">
+<div class="bd-content">
+<div class="bd-article-container">
+<div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+<div class="header-article-items__start">
+<div class="header-article-item">
+<nav aria-label="Breadcrumbs">
+<ul aria-label="Breadcrumb" class="bd-breadcrumbs" role="navigation">
+<li class="breadcrumb-item breadcrumb-home">
+<a aria-label="Home" class="nav-link" href="../index.html">
+<i class="fa-solid fa-home"></i>
+</a>
+</li>
+<li class="breadcrumb-item"><a class="nav-link" href="index.html">HoloViz Tutorial</a></li>
+<li aria-current="page" class="breadcrumb-item active">Custom Dashboards</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+</div>
+<div id="searchbox"></div>
+<article class="bd-article" role="main">
+<section id="custom-dashboards">
+<h1>Custom Dashboards<a class="headerlink" href="#custom-dashboards" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pathlib</span>
+<span class="kn">import</span> <span class="nn">panel</span> <span class="k">as</span> <span class="nn">pn</span>
+
+<span class="n">pn</span><span class="o">.</span><span class="n">extension</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/javascript">(function(root) {
+  function now() {
+    return new Date();
+  }
+
+  var force = true;
+  var py_version = '3.2.2'.replace('rc', '-rc.').replace('.dev', '-dev.');
+  var is_dev = py_version.indexOf("+") !== -1 || py_version.indexOf("-") !== -1;
+  var reloading = false;
+  var Bokeh = root.Bokeh;
+  var bokeh_loaded = Bokeh != null && (Bokeh.version === py_version || (Bokeh.versions !== undefined && Bokeh.versions.has(py_version)));
+
+  if (typeof (root._bokeh_timeout) === "undefined" || force) {
+    root._bokeh_timeout = Date.now() + 5000;
+    root._bokeh_failed_load = false;
+  }
+
+  function run_callbacks() {
+    try {
+      root._bokeh_onload_callbacks.forEach(function(callback) {
+        if (callback != null)
+          callback();
+      });
+    } finally {
+      delete root._bokeh_onload_callbacks;
+    }
+    console.debug("Bokeh: all callbacks have finished");
+  }
+
+  function load_libs(css_urls, js_urls, js_modules, js_exports, callback) {
+    if (css_urls == null) css_urls = [];
+    if (js_urls == null) js_urls = [];
+    if (js_modules == null) js_modules = [];
+    if (js_exports == null) js_exports = {};
+
+    root._bokeh_onload_callbacks.push(callback);
+
+    if (root._bokeh_is_loading > 0) {
+      console.debug("Bokeh: BokehJS is being loaded, scheduling callback at", now());
+      return null;
+    }
+    if (js_urls.length === 0 && js_modules.length === 0 && Object.keys(js_exports).length === 0) {
+      run_callbacks();
+      return null;
+    }
+    if (!reloading) {
+      console.debug("Bokeh: BokehJS not loaded, scheduling load and callback at", now());
+    }
+
+    function on_load() {
+      root._bokeh_is_loading--;
+      if (root._bokeh_is_loading === 0) {
+        console.debug("Bokeh: all BokehJS libraries/stylesheets loaded");
+        run_callbacks()
+      }
+    }
+    window._bokeh_on_load = on_load
+
+    function on_error() {
+      console.error("failed to load " + url);
+    }
+
+    var skip = [];
+    if (window.requirejs) {
+      window.requirejs.config({'packages': {}, 'paths': {'jspanel': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/jspanel', 'jspanel-modal': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/extensions/modal/jspanel.modal', 'jspanel-tooltip': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/extensions/tooltip/jspanel.tooltip', 'jspanel-hint': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/extensions/hint/jspanel.hint', 'jspanel-layout': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/extensions/layout/jspanel.layout', 'jspanel-contextmenu': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/extensions/contextmenu/jspanel.contextmenu', 'jspanel-dock': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/extensions/dock/jspanel.dock', 'gridstack': 'https://cdn.jsdelivr.net/npm/gridstack@7.2.3/dist/gridstack-all', 'notyf': 'https://cdn.jsdelivr.net/npm/notyf@3/notyf.min'}, 'shim': {'jspanel': {'exports': 'jsPanel'}, 'gridstack': {'exports': 'GridStack'}}});
+      require(["jspanel"], function(jsPanel) {
+	window.jsPanel = jsPanel
+	on_load()
+      })
+      require(["jspanel-modal"], function() {
+	on_load()
+      })
+      require(["jspanel-tooltip"], function() {
+	on_load()
+      })
+      require(["jspanel-hint"], function() {
+	on_load()
+      })
+      require(["jspanel-layout"], function() {
+	on_load()
+      })
+      require(["jspanel-contextmenu"], function() {
+	on_load()
+      })
+      require(["jspanel-dock"], function() {
+	on_load()
+      })
+      require(["gridstack"], function(GridStack) {
+	window.GridStack = GridStack
+	on_load()
+      })
+      require(["notyf"], function() {
+	on_load()
+      })
+      root._bokeh_is_loading = css_urls.length + 9;
+    } else {
+      root._bokeh_is_loading = css_urls.length + js_urls.length + js_modules.length + Object.keys(js_exports).length;
+    }
+
+    var existing_stylesheets = []
+    var links = document.getElementsByTagName('link')
+    for (var i = 0; i < links.length; i++) {
+      var link = links[i]
+      if (link.href != null) {
+	existing_stylesheets.push(link.href)
+      }
+    }
+    for (var i = 0; i < css_urls.length; i++) {
+      var url = css_urls[i];
+      if (existing_stylesheets.indexOf(url) !== -1) {
+	on_load()
+	continue;
+      }
+      const element = document.createElement("link");
+      element.onload = on_load;
+      element.onerror = on_error;
+      element.rel = "stylesheet";
+      element.type = "text/css";
+      element.href = url;
+      console.debug("Bokeh: injecting link tag for BokehJS stylesheet: ", url);
+      document.body.appendChild(element);
+    }    if (((window['jsPanel'] !== undefined) && (!(window['jsPanel'] instanceof HTMLElement))) || window.requirejs) {
+      var urls = ['https://cdn.holoviz.org/panel/1.2.0/dist/bundled/floatpanel/jspanel4@4.12.0/dist/jspanel.js', 'https://cdn.holoviz.org/panel/1.2.0/dist/bundled/floatpanel/jspanel4@4.12.0/dist/extensions/modal/jspanel.modal.js', 'https://cdn.holoviz.org/panel/1.2.0/dist/bundled/floatpanel/jspanel4@4.12.0/dist/extensions/tooltip/jspanel.tooltip.js', 'https://cdn.holoviz.org/panel/1.2.0/dist/bundled/floatpanel/jspanel4@4.12.0/dist/extensions/hint/jspanel.hint.js', 'https://cdn.holoviz.org/panel/1.2.0/dist/bundled/floatpanel/jspanel4@4.12.0/dist/extensions/layout/jspanel.layout.js', 'https://cdn.holoviz.org/panel/1.2.0/dist/bundled/floatpanel/jspanel4@4.12.0/dist/extensions/contextmenu/jspanel.contextmenu.js', 'https://cdn.holoviz.org/panel/1.2.0/dist/bundled/floatpanel/jspanel4@4.12.0/dist/extensions/dock/jspanel.dock.js'];
+      for (var i = 0; i < urls.length; i++) {
+        skip.push(urls[i])
+      }
+    }    if (((window['GridStack'] !== undefined) && (!(window['GridStack'] instanceof HTMLElement))) || window.requirejs) {
+      var urls = ['https://cdn.holoviz.org/panel/1.2.0/dist/bundled/gridstack/gridstack@7.2.3/dist/gridstack-all.js'];
+      for (var i = 0; i < urls.length; i++) {
+        skip.push(urls[i])
+      }
+    }    if (((window['Notyf'] !== undefined) && (!(window['Notyf'] instanceof HTMLElement))) || window.requirejs) {
+      var urls = ['https://cdn.holoviz.org/panel/1.2.0/dist/bundled/notificationarea/notyf@3/notyf.min.js'];
+      for (var i = 0; i < urls.length; i++) {
+        skip.push(urls[i])
+      }
+    }    var existing_scripts = []
+    var scripts = document.getElementsByTagName('script')
+    for (var i = 0; i < scripts.length; i++) {
+      var script = scripts[i]
+      if (script.src != null) {
+	existing_scripts.push(script.src)
+      }
+    }
+    for (var i = 0; i < js_urls.length; i++) {
+      var url = js_urls[i];
+      if (skip.indexOf(url) !== -1 || existing_scripts.indexOf(url) !== -1) {
+	if (!window.requirejs) {
+	  on_load();
+	}
+	continue;
+      }
+      var element = document.createElement('script');
+      element.onload = on_load;
+      element.onerror = on_error;
+      element.async = false;
+      element.src = url;
+      console.debug("Bokeh: injecting script tag for BokehJS library: ", url);
+      document.head.appendChild(element);
+    }
+    for (var i = 0; i < js_modules.length; i++) {
+      var url = js_modules[i];
+      if (skip.indexOf(url) !== -1 || existing_scripts.indexOf(url) !== -1) {
+	if (!window.requirejs) {
+	  on_load();
+	}
+	continue;
+      }
+      var element = document.createElement('script');
+      element.onload = on_load;
+      element.onerror = on_error;
+      element.async = false;
+      element.src = url;
+      element.type = "module";
+      console.debug("Bokeh: injecting script tag for BokehJS library: ", url);
+      document.head.appendChild(element);
+    }
+    for (const name in js_exports) {
+      var url = js_exports[name];
+      if (skip.indexOf(url) >= 0 || root[name] != null) {
+	if (!window.requirejs) {
+	  on_load();
+	}
+	continue;
+      }
+      var element = document.createElement('script');
+      element.onerror = on_error;
+      element.async = false;
+      element.type = "module";
+      console.debug("Bokeh: injecting script tag for BokehJS library: ", url);
+      element.textContent = `
+      import ${name} from "${url}"
+      window.${name} = ${name}
+      window._bokeh_on_load()
+      `
+      document.head.appendChild(element);
+    }
+    if (!js_urls.length && !js_modules.length) {
+      on_load()
+    }
+  };
+
+  function inject_raw_css(css) {
+    const element = document.createElement("style");
+    element.appendChild(document.createTextNode(css));
+    document.body.appendChild(element);
+  }
+
+  var js_urls = ["https://cdn.bokeh.org/bokeh/release/bokeh-3.2.2.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-gl-3.2.2.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-widgets-3.2.2.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-tables-3.2.2.min.js", "https://cdn.holoviz.org/panel/1.2.0/dist/panel.min.js"];
+  var js_modules = [];
+  var js_exports = {};
+  var css_urls = [];
+  var inline_js = [    function(Bokeh) {
+      Bokeh.set_log_level("info");
+    },
+function(Bokeh) {} // ensure no trailing comma for IE
+  ];
+
+  function run_inline_js() {
+    if ((root.Bokeh !== undefined) || (force === true)) {
+      for (var i = 0; i < inline_js.length; i++) {
+        inline_js[i].call(root, root.Bokeh);
+      }
+      // Cache old bokeh versions
+      if (Bokeh != undefined && !reloading) {
+	var NewBokeh = root.Bokeh;
+	if (Bokeh.versions === undefined) {
+	  Bokeh.versions = new Map();
+	}
+	if (NewBokeh.version !== Bokeh.version) {
+	  Bokeh.versions.set(NewBokeh.version, NewBokeh)
+	}
+	root.Bokeh = Bokeh;
+      }} else if (Date.now() < root._bokeh_timeout) {
+      setTimeout(run_inline_js, 100);
+    } else if (!root._bokeh_failed_load) {
+      console.log("Bokeh: BokehJS failed to load within specified timeout.");
+      root._bokeh_failed_load = true;
+    }
+    root._bokeh_is_initializing = false
+  }
+
+  function load_or_wait() {
+    // Implement a backoff loop that tries to ensure we do not load multiple
+    // versions of Bokeh and its dependencies at the same time.
+    // In recent versions we use the root._bokeh_is_initializing flag
+    // to determine whether there is an ongoing attempt to initialize
+    // bokeh, however for backward compatibility we also try to ensure
+    // that we do not start loading a newer (Panel>=1.0 and Bokeh>3) version
+    // before older versions are fully initialized.
+    if (root._bokeh_is_initializing && Date.now() > root._bokeh_timeout) {
+      root._bokeh_is_initializing = false;
+      root._bokeh_onload_callbacks = undefined;
+      console.log("Bokeh: BokehJS was loaded multiple times but one version failed to initialize.");
+      load_or_wait();
+    } else if (root._bokeh_is_initializing || (typeof root._bokeh_is_initializing === "undefined" && root._bokeh_onload_callbacks !== undefined)) {
+      setTimeout(load_or_wait, 100);
+    } else {
+      Bokeh = root.Bokeh;
+      bokeh_loaded = Bokeh != null && (Bokeh.version === py_version || (Bokeh.versions !== undefined && Bokeh.versions.has(py_version)));
+      root._bokeh_is_initializing = true
+      root._bokeh_onload_callbacks = []
+      if (!reloading && (!bokeh_loaded || is_dev)) {
+	root.Bokeh = undefined;
+      }
+      load_libs(css_urls, js_urls, js_modules, js_exports, function() {
+	console.debug("Bokeh: BokehJS plotting callback run at", now());
+	run_inline_js();
+      });
+    }
+  }
+  // Give older versions of the autoload script a head-start to ensure
+  // they initialize before we start loading newer version.
+  setTimeout(load_or_wait, 100)
+}(window));</script><script type="application/javascript">
+if ((window.PyViz === undefined) || (window.PyViz instanceof HTMLElement)) {
+  window.PyViz = {comms: {}, comm_status:{}, kernels:{}, receivers: {}, plot_index: []}
+}
+
+
+    function JupyterCommManager() {
+    }
+
+    JupyterCommManager.prototype.register_target = function(plot_id, comm_id, msg_handler) {
+      if (window.comm_manager || ((window.Jupyter !== undefined) && (Jupyter.notebook.kernel != null))) {
+        var comm_manager = window.comm_manager || Jupyter.notebook.kernel.comm_manager;
+        comm_manager.register_target(comm_id, function(comm) {
+          comm.on_msg(msg_handler);
+        });
+      } else if ((plot_id in window.PyViz.kernels) && (window.PyViz.kernels[plot_id])) {
+        window.PyViz.kernels[plot_id].registerCommTarget(comm_id, function(comm) {
+          comm.onMsg = msg_handler;
+        });
+      } else if (typeof google != 'undefined' && google.colab.kernel != null) {
+        google.colab.kernel.comms.registerTarget(comm_id, (comm) => {
+          var messages = comm.messages[Symbol.asyncIterator]();
+          function processIteratorResult(result) {
+            var message = result.value;
+            console.log(message)
+            var content = {data: message.data, comm_id};
+            var buffers = []
+            for (var buffer of message.buffers || []) {
+              buffers.push(new DataView(buffer))
+            }
+            var metadata = message.metadata || {};
+            var msg = {content, buffers, metadata}
+            msg_handler(msg);
+            return messages.next().then(processIteratorResult);
+          }
+          return messages.next().then(processIteratorResult);
+        })
+      }
+    }
+
+    JupyterCommManager.prototype.get_client_comm = function(plot_id, comm_id, msg_handler) {
+      if (comm_id in window.PyViz.comms) {
+        return window.PyViz.comms[comm_id];
+      } else if (window.comm_manager || ((window.Jupyter !== undefined) && (Jupyter.notebook.kernel != null))) {
+        var comm_manager = window.comm_manager || Jupyter.notebook.kernel.comm_manager;
+        var comm = comm_manager.new_comm(comm_id, {}, {}, {}, comm_id);
+        if (msg_handler) {
+          comm.on_msg(msg_handler);
+        }
+      } else if ((plot_id in window.PyViz.kernels) && (window.PyViz.kernels[plot_id])) {
+        var comm = window.PyViz.kernels[plot_id].connectToComm(comm_id);
+        comm.open();
+        if (msg_handler) {
+          comm.onMsg = msg_handler;
+        }
+      } else if (typeof google != 'undefined' && google.colab.kernel != null) {
+        var comm_promise = google.colab.kernel.comms.open(comm_id)
+        comm_promise.then((comm) => {
+          window.PyViz.comms[comm_id] = comm;
+          if (msg_handler) {
+            var messages = comm.messages[Symbol.asyncIterator]();
+            function processIteratorResult(result) {
+              var message = result.value;
+              var content = {data: message.data};
+              var metadata = message.metadata || {comm_id};
+              var msg = {content, metadata}
+              msg_handler(msg);
+              return messages.next().then(processIteratorResult);
+            }
+            return messages.next().then(processIteratorResult);
+          }
+        }) 
+        var sendClosure = (data, metadata, buffers, disposeOnDone) => {
+          return comm_promise.then((comm) => {
+            comm.send(data, metadata, buffers, disposeOnDone);
+          });
+        };
+        var comm = {
+          send: sendClosure
+        };
+      }
+      window.PyViz.comms[comm_id] = comm;
+      return comm;
+    }
+    window.PyViz.comm_manager = new JupyterCommManager();
+    
+
+
+var JS_MIME_TYPE = 'application/javascript';
+var HTML_MIME_TYPE = 'text/html';
+var EXEC_MIME_TYPE = 'application/vnd.holoviews_exec.v0+json';
+var CLASS_NAME = 'output';
+
+/**
+ * Render data to the DOM node
+ */
+function render(props, node) {
+  var div = document.createElement("div");
+  var script = document.createElement("script");
+  node.appendChild(div);
+  node.appendChild(script);
+}
+
+/**
+ * Handle when a new output is added
+ */
+function handle_add_output(event, handle) {
+  var output_area = handle.output_area;
+  var output = handle.output;
+  if ((output.data == undefined) || (!output.data.hasOwnProperty(EXEC_MIME_TYPE))) {
+    return
+  }
+  var id = output.metadata[EXEC_MIME_TYPE]["id"];
+  var toinsert = output_area.element.find("." + CLASS_NAME.split(' ')[0]);
+  if (id !== undefined) {
+    var nchildren = toinsert.length;
+    var html_node = toinsert[nchildren-1].children[0];
+    html_node.innerHTML = output.data[HTML_MIME_TYPE];
+    var scripts = [];
+    var nodelist = html_node.querySelectorAll("script");
+    for (var i in nodelist) {
+      if (nodelist.hasOwnProperty(i)) {
+        scripts.push(nodelist[i])
+      }
+    }
+
+    scripts.forEach( function (oldScript) {
+      var newScript = document.createElement("script");
+      var attrs = [];
+      var nodemap = oldScript.attributes;
+      for (var j in nodemap) {
+        if (nodemap.hasOwnProperty(j)) {
+          attrs.push(nodemap[j])
+        }
+      }
+      attrs.forEach(function(attr) { newScript.setAttribute(attr.name, attr.value) });
+      newScript.appendChild(document.createTextNode(oldScript.innerHTML));
+      oldScript.parentNode.replaceChild(newScript, oldScript);
+    });
+    if (JS_MIME_TYPE in output.data) {
+      toinsert[nchildren-1].children[1].textContent = output.data[JS_MIME_TYPE];
+    }
+    output_area._hv_plot_id = id;
+    if ((window.Bokeh !== undefined) && (id in Bokeh.index)) {
+      window.PyViz.plot_index[id] = Bokeh.index[id];
+    } else {
+      window.PyViz.plot_index[id] = null;
+    }
+  } else if (output.metadata[EXEC_MIME_TYPE]["server_id"] !== undefined) {
+    var bk_div = document.createElement("div");
+    bk_div.innerHTML = output.data[HTML_MIME_TYPE];
+    var script_attrs = bk_div.children[0].attributes;
+    for (var i = 0; i < script_attrs.length; i++) {
+      toinsert[toinsert.length - 1].childNodes[1].setAttribute(script_attrs[i].name, script_attrs[i].value);
+    }
+    // store reference to server id on output_area
+    output_area._bokeh_server_id = output.metadata[EXEC_MIME_TYPE]["server_id"];
+  }
+}
+
+/**
+ * Handle when an output is cleared or removed
+ */
+function handle_clear_output(event, handle) {
+  var id = handle.cell.output_area._hv_plot_id;
+  var server_id = handle.cell.output_area._bokeh_server_id;
+  if (((id === undefined) || !(id in PyViz.plot_index)) && (server_id !== undefined)) { return; }
+  var comm = window.PyViz.comm_manager.get_client_comm("hv-extension-comm", "hv-extension-comm", function () {});
+  if (server_id !== null) {
+    comm.send({event_type: 'server_delete', 'id': server_id});
+    return;
+  } else if (comm !== null) {
+    comm.send({event_type: 'delete', 'id': id});
+  }
+  delete PyViz.plot_index[id];
+  if ((window.Bokeh !== undefined) & (id in window.Bokeh.index)) {
+    var doc = window.Bokeh.index[id].model.document
+    doc.clear();
+    const i = window.Bokeh.documents.indexOf(doc);
+    if (i > -1) {
+      window.Bokeh.documents.splice(i, 1);
+    }
+  }
+}
+
+/**
+ * Handle kernel restart event
+ */
+function handle_kernel_cleanup(event, handle) {
+  delete PyViz.comms["hv-extension-comm"];
+  window.PyViz.plot_index = {}
+}
+
+/**
+ * Handle update_display_data messages
+ */
+function handle_update_output(event, handle) {
+  handle_clear_output(event, {cell: {output_area: handle.output_area}})
+  handle_add_output(event, handle)
+}
+
+function register_renderer(events, OutputArea) {
+  function append_mime(data, metadata, element) {
+    // create a DOM node to render to
+    var toinsert = this.create_output_subarea(
+    metadata,
+    CLASS_NAME,
+    EXEC_MIME_TYPE
+    );
+    this.keyboard_manager.register_events(toinsert);
+    // Render to node
+    var props = {data: data, metadata: metadata[EXEC_MIME_TYPE]};
+    render(props, toinsert[0]);
+    element.append(toinsert);
+    return toinsert
+  }
+
+  events.on('output_added.OutputArea', handle_add_output);
+  events.on('output_updated.OutputArea', handle_update_output);
+  events.on('clear_output.CodeCell', handle_clear_output);
+  events.on('delete.Cell', handle_clear_output);
+  events.on('kernel_ready.Kernel', handle_kernel_cleanup);
+
+  OutputArea.prototype.register_mime_type(EXEC_MIME_TYPE, append_mime, {
+    safe: true,
+    index: 0
+  });
+}
+
+if (window.Jupyter !== undefined) {
+  try {
+    var events = require('base/js/events');
+    var OutputArea = require('notebook/js/outputarea').OutputArea;
+    if (OutputArea.prototype.mime_types().indexOf(EXEC_MIME_TYPE) == -1) {
+      register_renderer(events, OutputArea);
+    }
+  } catch(err) {
+  }
+}
+</script><div class="output text_html"><style>*[data-root-id],
+*[data-root-id] > * {
+  box-sizing: border-box;
+  font-family: var(--jp-ui-font-family);
+  font-size: var(--jp-ui-font-size1);
+  color: var(--vscode-editor-foreground, var(--jp-ui-font-color1));
+}
+
+/* Override VSCode background color */
+.cell-output-ipywidget-background:has(
+    > .cell-output-ipywidget-background > .lm-Widget > *[data-root-id]
+  ),
+.cell-output-ipywidget-background:has(> .lm-Widget > *[data-root-id]) {
+  background-color: transparent !important;
+}
+</style></div><script type="application/javascript">(function(root) {
+  function now() {
+    return new Date();
+  }
+
+  var force = true;
+  var py_version = '3.2.2'.replace('rc', '-rc.').replace('.dev', '-dev.');
+  var is_dev = py_version.indexOf("+") !== -1 || py_version.indexOf("-") !== -1;
+  var reloading = true;
+  var Bokeh = root.Bokeh;
+  var bokeh_loaded = Bokeh != null && (Bokeh.version === py_version || (Bokeh.versions !== undefined && Bokeh.versions.has(py_version)));
+
+  if (typeof (root._bokeh_timeout) === "undefined" || force) {
+    root._bokeh_timeout = Date.now() + 5000;
+    root._bokeh_failed_load = false;
+  }
+
+  function run_callbacks() {
+    try {
+      root._bokeh_onload_callbacks.forEach(function(callback) {
+        if (callback != null)
+          callback();
+      });
+    } finally {
+      delete root._bokeh_onload_callbacks;
+    }
+    console.debug("Bokeh: all callbacks have finished");
+  }
+
+  function load_libs(css_urls, js_urls, js_modules, js_exports, callback) {
+    if (css_urls == null) css_urls = [];
+    if (js_urls == null) js_urls = [];
+    if (js_modules == null) js_modules = [];
+    if (js_exports == null) js_exports = {};
+
+    root._bokeh_onload_callbacks.push(callback);
+
+    if (root._bokeh_is_loading > 0) {
+      console.debug("Bokeh: BokehJS is being loaded, scheduling callback at", now());
+      return null;
+    }
+    if (js_urls.length === 0 && js_modules.length === 0 && Object.keys(js_exports).length === 0) {
+      run_callbacks();
+      return null;
+    }
+    if (!reloading) {
+      console.debug("Bokeh: BokehJS not loaded, scheduling load and callback at", now());
+    }
+
+    function on_load() {
+      root._bokeh_is_loading--;
+      if (root._bokeh_is_loading === 0) {
+        console.debug("Bokeh: all BokehJS libraries/stylesheets loaded");
+        run_callbacks()
+      }
+    }
+    window._bokeh_on_load = on_load
+
+    function on_error() {
+      console.error("failed to load " + url);
+    }
+
+    var skip = [];
+    if (window.requirejs) {
+      window.requirejs.config({'packages': {}, 'paths': {'jspanel': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/jspanel', 'jspanel-modal': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/extensions/modal/jspanel.modal', 'jspanel-tooltip': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/extensions/tooltip/jspanel.tooltip', 'jspanel-hint': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/extensions/hint/jspanel.hint', 'jspanel-layout': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/extensions/layout/jspanel.layout', 'jspanel-contextmenu': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/extensions/contextmenu/jspanel.contextmenu', 'jspanel-dock': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/extensions/dock/jspanel.dock', 'gridstack': 'https://cdn.jsdelivr.net/npm/gridstack@7.2.3/dist/gridstack-all', 'notyf': 'https://cdn.jsdelivr.net/npm/notyf@3/notyf.min'}, 'shim': {'jspanel': {'exports': 'jsPanel'}, 'gridstack': {'exports': 'GridStack'}}});
+      require(["jspanel"], function(jsPanel) {
+	window.jsPanel = jsPanel
+	on_load()
+      })
+      require(["jspanel-modal"], function() {
+	on_load()
+      })
+      require(["jspanel-tooltip"], function() {
+	on_load()
+      })
+      require(["jspanel-hint"], function() {
+	on_load()
+      })
+      require(["jspanel-layout"], function() {
+	on_load()
+      })
+      require(["jspanel-contextmenu"], function() {
+	on_load()
+      })
+      require(["jspanel-dock"], function() {
+	on_load()
+      })
+      require(["gridstack"], function(GridStack) {
+	window.GridStack = GridStack
+	on_load()
+      })
+      require(["notyf"], function() {
+	on_load()
+      })
+      root._bokeh_is_loading = css_urls.length + 9;
+    } else {
+      root._bokeh_is_loading = css_urls.length + js_urls.length + js_modules.length + Object.keys(js_exports).length;
+    }
+
+    var existing_stylesheets = []
+    var links = document.getElementsByTagName('link')
+    for (var i = 0; i < links.length; i++) {
+      var link = links[i]
+      if (link.href != null) {
+	existing_stylesheets.push(link.href)
+      }
+    }
+    for (var i = 0; i < css_urls.length; i++) {
+      var url = css_urls[i];
+      if (existing_stylesheets.indexOf(url) !== -1) {
+	on_load()
+	continue;
+      }
+      const element = document.createElement("link");
+      element.onload = on_load;
+      element.onerror = on_error;
+      element.rel = "stylesheet";
+      element.type = "text/css";
+      element.href = url;
+      console.debug("Bokeh: injecting link tag for BokehJS stylesheet: ", url);
+      document.body.appendChild(element);
+    }    if (((window['jsPanel'] !== undefined) && (!(window['jsPanel'] instanceof HTMLElement))) || window.requirejs) {
+      var urls = ['https://cdn.holoviz.org/panel/1.2.0/dist/bundled/floatpanel/jspanel4@4.12.0/dist/jspanel.js', 'https://cdn.holoviz.org/panel/1.2.0/dist/bundled/floatpanel/jspanel4@4.12.0/dist/extensions/modal/jspanel.modal.js', 'https://cdn.holoviz.org/panel/1.2.0/dist/bundled/floatpanel/jspanel4@4.12.0/dist/extensions/tooltip/jspanel.tooltip.js', 'https://cdn.holoviz.org/panel/1.2.0/dist/bundled/floatpanel/jspanel4@4.12.0/dist/extensions/hint/jspanel.hint.js', 'https://cdn.holoviz.org/panel/1.2.0/dist/bundled/floatpanel/jspanel4@4.12.0/dist/extensions/layout/jspanel.layout.js', 'https://cdn.holoviz.org/panel/1.2.0/dist/bundled/floatpanel/jspanel4@4.12.0/dist/extensions/contextmenu/jspanel.contextmenu.js', 'https://cdn.holoviz.org/panel/1.2.0/dist/bundled/floatpanel/jspanel4@4.12.0/dist/extensions/dock/jspanel.dock.js'];
+      for (var i = 0; i < urls.length; i++) {
+        skip.push(urls[i])
+      }
+    }    if (((window['GridStack'] !== undefined) && (!(window['GridStack'] instanceof HTMLElement))) || window.requirejs) {
+      var urls = ['https://cdn.holoviz.org/panel/1.2.0/dist/bundled/gridstack/gridstack@7.2.3/dist/gridstack-all.js'];
+      for (var i = 0; i < urls.length; i++) {
+        skip.push(urls[i])
+      }
+    }    if (((window['Notyf'] !== undefined) && (!(window['Notyf'] instanceof HTMLElement))) || window.requirejs) {
+      var urls = ['https://cdn.holoviz.org/panel/1.2.0/dist/bundled/notificationarea/notyf@3/notyf.min.js'];
+      for (var i = 0; i < urls.length; i++) {
+        skip.push(urls[i])
+      }
+    }    var existing_scripts = []
+    var scripts = document.getElementsByTagName('script')
+    for (var i = 0; i < scripts.length; i++) {
+      var script = scripts[i]
+      if (script.src != null) {
+	existing_scripts.push(script.src)
+      }
+    }
+    for (var i = 0; i < js_urls.length; i++) {
+      var url = js_urls[i];
+      if (skip.indexOf(url) !== -1 || existing_scripts.indexOf(url) !== -1) {
+	if (!window.requirejs) {
+	  on_load();
+	}
+	continue;
+      }
+      var element = document.createElement('script');
+      element.onload = on_load;
+      element.onerror = on_error;
+      element.async = false;
+      element.src = url;
+      console.debug("Bokeh: injecting script tag for BokehJS library: ", url);
+      document.head.appendChild(element);
+    }
+    for (var i = 0; i < js_modules.length; i++) {
+      var url = js_modules[i];
+      if (skip.indexOf(url) !== -1 || existing_scripts.indexOf(url) !== -1) {
+	if (!window.requirejs) {
+	  on_load();
+	}
+	continue;
+      }
+      var element = document.createElement('script');
+      element.onload = on_load;
+      element.onerror = on_error;
+      element.async = false;
+      element.src = url;
+      element.type = "module";
+      console.debug("Bokeh: injecting script tag for BokehJS library: ", url);
+      document.head.appendChild(element);
+    }
+    for (const name in js_exports) {
+      var url = js_exports[name];
+      if (skip.indexOf(url) >= 0 || root[name] != null) {
+	if (!window.requirejs) {
+	  on_load();
+	}
+	continue;
+      }
+      var element = document.createElement('script');
+      element.onerror = on_error;
+      element.async = false;
+      element.type = "module";
+      console.debug("Bokeh: injecting script tag for BokehJS library: ", url);
+      element.textContent = `
+      import ${name} from "${url}"
+      window.${name} = ${name}
+      window._bokeh_on_load()
+      `
+      document.head.appendChild(element);
+    }
+    if (!js_urls.length && !js_modules.length) {
+      on_load()
+    }
+  };
+
+  function inject_raw_css(css) {
+    const element = document.createElement("style");
+    element.appendChild(document.createTextNode(css));
+    document.body.appendChild(element);
+  }
+
+  var js_urls = [];
+  var js_modules = [];
+  var js_exports = {};
+  var css_urls = [];
+  var inline_js = [    function(Bokeh) {
+      Bokeh.set_log_level("info");
+    },
+function(Bokeh) {} // ensure no trailing comma for IE
+  ];
+
+  function run_inline_js() {
+    if ((root.Bokeh !== undefined) || (force === true)) {
+      for (var i = 0; i < inline_js.length; i++) {
+        inline_js[i].call(root, root.Bokeh);
+      }
+      // Cache old bokeh versions
+      if (Bokeh != undefined && !reloading) {
+	var NewBokeh = root.Bokeh;
+	if (Bokeh.versions === undefined) {
+	  Bokeh.versions = new Map();
+	}
+	if (NewBokeh.version !== Bokeh.version) {
+	  Bokeh.versions.set(NewBokeh.version, NewBokeh)
+	}
+	root.Bokeh = Bokeh;
+      }} else if (Date.now() < root._bokeh_timeout) {
+      setTimeout(run_inline_js, 100);
+    } else if (!root._bokeh_failed_load) {
+      console.log("Bokeh: BokehJS failed to load within specified timeout.");
+      root._bokeh_failed_load = true;
+    }
+    root._bokeh_is_initializing = false
+  }
+
+  function load_or_wait() {
+    // Implement a backoff loop that tries to ensure we do not load multiple
+    // versions of Bokeh and its dependencies at the same time.
+    // In recent versions we use the root._bokeh_is_initializing flag
+    // to determine whether there is an ongoing attempt to initialize
+    // bokeh, however for backward compatibility we also try to ensure
+    // that we do not start loading a newer (Panel>=1.0 and Bokeh>3) version
+    // before older versions are fully initialized.
+    if (root._bokeh_is_initializing && Date.now() > root._bokeh_timeout) {
+      root._bokeh_is_initializing = false;
+      root._bokeh_onload_callbacks = undefined;
+      console.log("Bokeh: BokehJS was loaded multiple times but one version failed to initialize.");
+      load_or_wait();
+    } else if (root._bokeh_is_initializing || (typeof root._bokeh_is_initializing === "undefined" && root._bokeh_onload_callbacks !== undefined)) {
+      setTimeout(load_or_wait, 100);
+    } else {
+      Bokeh = root.Bokeh;
+      bokeh_loaded = Bokeh != null && (Bokeh.version === py_version || (Bokeh.versions !== undefined && Bokeh.versions.has(py_version)));
+      root._bokeh_is_initializing = true
+      root._bokeh_onload_callbacks = []
+      if (!reloading && (!bokeh_loaded || is_dev)) {
+	root.Bokeh = undefined;
+      }
+      load_libs(css_urls, js_urls, js_modules, js_exports, function() {
+	console.debug("Bokeh: BokehJS plotting callback run at", now());
+	run_inline_js();
+      });
+    }
+  }
+  // Give older versions of the autoload script a head-start to ensure
+  // they initialize before we start loading newer version.
+  setTimeout(load_or_wait, 100)
+}(window));</script><script type="application/javascript">
+if ((window.PyViz === undefined) || (window.PyViz instanceof HTMLElement)) {
+  window.PyViz = {comms: {}, comm_status:{}, kernels:{}, receivers: {}, plot_index: []}
+}
+
+
+    function JupyterCommManager() {
+    }
+
+    JupyterCommManager.prototype.register_target = function(plot_id, comm_id, msg_handler) {
+      if (window.comm_manager || ((window.Jupyter !== undefined) && (Jupyter.notebook.kernel != null))) {
+        var comm_manager = window.comm_manager || Jupyter.notebook.kernel.comm_manager;
+        comm_manager.register_target(comm_id, function(comm) {
+          comm.on_msg(msg_handler);
+        });
+      } else if ((plot_id in window.PyViz.kernels) && (window.PyViz.kernels[plot_id])) {
+        window.PyViz.kernels[plot_id].registerCommTarget(comm_id, function(comm) {
+          comm.onMsg = msg_handler;
+        });
+      } else if (typeof google != 'undefined' && google.colab.kernel != null) {
+        google.colab.kernel.comms.registerTarget(comm_id, (comm) => {
+          var messages = comm.messages[Symbol.asyncIterator]();
+          function processIteratorResult(result) {
+            var message = result.value;
+            console.log(message)
+            var content = {data: message.data, comm_id};
+            var buffers = []
+            for (var buffer of message.buffers || []) {
+              buffers.push(new DataView(buffer))
+            }
+            var metadata = message.metadata || {};
+            var msg = {content, buffers, metadata}
+            msg_handler(msg);
+            return messages.next().then(processIteratorResult);
+          }
+          return messages.next().then(processIteratorResult);
+        })
+      }
+    }
+
+    JupyterCommManager.prototype.get_client_comm = function(plot_id, comm_id, msg_handler) {
+      if (comm_id in window.PyViz.comms) {
+        return window.PyViz.comms[comm_id];
+      } else if (window.comm_manager || ((window.Jupyter !== undefined) && (Jupyter.notebook.kernel != null))) {
+        var comm_manager = window.comm_manager || Jupyter.notebook.kernel.comm_manager;
+        var comm = comm_manager.new_comm(comm_id, {}, {}, {}, comm_id);
+        if (msg_handler) {
+          comm.on_msg(msg_handler);
+        }
+      } else if ((plot_id in window.PyViz.kernels) && (window.PyViz.kernels[plot_id])) {
+        var comm = window.PyViz.kernels[plot_id].connectToComm(comm_id);
+        comm.open();
+        if (msg_handler) {
+          comm.onMsg = msg_handler;
+        }
+      } else if (typeof google != 'undefined' && google.colab.kernel != null) {
+        var comm_promise = google.colab.kernel.comms.open(comm_id)
+        comm_promise.then((comm) => {
+          window.PyViz.comms[comm_id] = comm;
+          if (msg_handler) {
+            var messages = comm.messages[Symbol.asyncIterator]();
+            function processIteratorResult(result) {
+              var message = result.value;
+              var content = {data: message.data};
+              var metadata = message.metadata || {comm_id};
+              var msg = {content, metadata}
+              msg_handler(msg);
+              return messages.next().then(processIteratorResult);
+            }
+            return messages.next().then(processIteratorResult);
+          }
+        }) 
+        var sendClosure = (data, metadata, buffers, disposeOnDone) => {
+          return comm_promise.then((comm) => {
+            comm.send(data, metadata, buffers, disposeOnDone);
+          });
+        };
+        var comm = {
+          send: sendClosure
+        };
+      }
+      window.PyViz.comms[comm_id] = comm;
+      return comm;
+    }
+    window.PyViz.comm_manager = new JupyterCommManager();
+    
+
+
+var JS_MIME_TYPE = 'application/javascript';
+var HTML_MIME_TYPE = 'text/html';
+var EXEC_MIME_TYPE = 'application/vnd.holoviews_exec.v0+json';
+var CLASS_NAME = 'output';
+
+/**
+ * Render data to the DOM node
+ */
+function render(props, node) {
+  var div = document.createElement("div");
+  var script = document.createElement("script");
+  node.appendChild(div);
+  node.appendChild(script);
+}
+
+/**
+ * Handle when a new output is added
+ */
+function handle_add_output(event, handle) {
+  var output_area = handle.output_area;
+  var output = handle.output;
+  if ((output.data == undefined) || (!output.data.hasOwnProperty(EXEC_MIME_TYPE))) {
+    return
+  }
+  var id = output.metadata[EXEC_MIME_TYPE]["id"];
+  var toinsert = output_area.element.find("." + CLASS_NAME.split(' ')[0]);
+  if (id !== undefined) {
+    var nchildren = toinsert.length;
+    var html_node = toinsert[nchildren-1].children[0];
+    html_node.innerHTML = output.data[HTML_MIME_TYPE];
+    var scripts = [];
+    var nodelist = html_node.querySelectorAll("script");
+    for (var i in nodelist) {
+      if (nodelist.hasOwnProperty(i)) {
+        scripts.push(nodelist[i])
+      }
+    }
+
+    scripts.forEach( function (oldScript) {
+      var newScript = document.createElement("script");
+      var attrs = [];
+      var nodemap = oldScript.attributes;
+      for (var j in nodemap) {
+        if (nodemap.hasOwnProperty(j)) {
+          attrs.push(nodemap[j])
+        }
+      }
+      attrs.forEach(function(attr) { newScript.setAttribute(attr.name, attr.value) });
+      newScript.appendChild(document.createTextNode(oldScript.innerHTML));
+      oldScript.parentNode.replaceChild(newScript, oldScript);
+    });
+    if (JS_MIME_TYPE in output.data) {
+      toinsert[nchildren-1].children[1].textContent = output.data[JS_MIME_TYPE];
+    }
+    output_area._hv_plot_id = id;
+    if ((window.Bokeh !== undefined) && (id in Bokeh.index)) {
+      window.PyViz.plot_index[id] = Bokeh.index[id];
+    } else {
+      window.PyViz.plot_index[id] = null;
+    }
+  } else if (output.metadata[EXEC_MIME_TYPE]["server_id"] !== undefined) {
+    var bk_div = document.createElement("div");
+    bk_div.innerHTML = output.data[HTML_MIME_TYPE];
+    var script_attrs = bk_div.children[0].attributes;
+    for (var i = 0; i < script_attrs.length; i++) {
+      toinsert[toinsert.length - 1].childNodes[1].setAttribute(script_attrs[i].name, script_attrs[i].value);
+    }
+    // store reference to server id on output_area
+    output_area._bokeh_server_id = output.metadata[EXEC_MIME_TYPE]["server_id"];
+  }
+}
+
+/**
+ * Handle when an output is cleared or removed
+ */
+function handle_clear_output(event, handle) {
+  var id = handle.cell.output_area._hv_plot_id;
+  var server_id = handle.cell.output_area._bokeh_server_id;
+  if (((id === undefined) || !(id in PyViz.plot_index)) && (server_id !== undefined)) { return; }
+  var comm = window.PyViz.comm_manager.get_client_comm("hv-extension-comm", "hv-extension-comm", function () {});
+  if (server_id !== null) {
+    comm.send({event_type: 'server_delete', 'id': server_id});
+    return;
+  } else if (comm !== null) {
+    comm.send({event_type: 'delete', 'id': id});
+  }
+  delete PyViz.plot_index[id];
+  if ((window.Bokeh !== undefined) & (id in window.Bokeh.index)) {
+    var doc = window.Bokeh.index[id].model.document
+    doc.clear();
+    const i = window.Bokeh.documents.indexOf(doc);
+    if (i > -1) {
+      window.Bokeh.documents.splice(i, 1);
+    }
+  }
+}
+
+/**
+ * Handle kernel restart event
+ */
+function handle_kernel_cleanup(event, handle) {
+  delete PyViz.comms["hv-extension-comm"];
+  window.PyViz.plot_index = {}
+}
+
+/**
+ * Handle update_display_data messages
+ */
+function handle_update_output(event, handle) {
+  handle_clear_output(event, {cell: {output_area: handle.output_area}})
+  handle_add_output(event, handle)
+}
+
+function register_renderer(events, OutputArea) {
+  function append_mime(data, metadata, element) {
+    // create a DOM node to render to
+    var toinsert = this.create_output_subarea(
+    metadata,
+    CLASS_NAME,
+    EXEC_MIME_TYPE
+    );
+    this.keyboard_manager.register_events(toinsert);
+    // Render to node
+    var props = {data: data, metadata: metadata[EXEC_MIME_TYPE]};
+    render(props, toinsert[0]);
+    element.append(toinsert);
+    return toinsert
+  }
+
+  events.on('output_added.OutputArea', handle_add_output);
+  events.on('output_updated.OutputArea', handle_update_output);
+  events.on('clear_output.CodeCell', handle_clear_output);
+  events.on('delete.Cell', handle_clear_output);
+  events.on('kernel_ready.Kernel', handle_kernel_cleanup);
+
+  OutputArea.prototype.register_mime_type(EXEC_MIME_TYPE, append_mime, {
+    safe: true,
+    index: 0
+  });
+}
+
+if (window.Jupyter !== undefined) {
+  try {
+    var events = require('base/js/events');
+    var OutputArea = require('notebook/js/outputarea').OutputArea;
+    if (OutputArea.prototype.mime_types().indexOf(EXEC_MIME_TYPE) == -1) {
+      register_renderer(events, OutputArea);
+    }
+  } catch(err) {
+  }
+}
+</script><div class="output text_html"><style>*[data-root-id],
+*[data-root-id] > * {
+  box-sizing: border-box;
+  font-family: var(--jp-ui-font-family);
+  font-size: var(--jp-ui-font-size1);
+  color: var(--vscode-editor-foreground, var(--jp-ui-font-color1));
+}
+
+/* Override VSCode background color */
+.cell-output-ipywidget-background:has(
+    > .cell-output-ipywidget-background > .lm-Widget > *[data-root-id]
+  ),
+.cell-output-ipywidget-background:has(> .lm-Widget > *[data-root-id]) {
+  background-color: transparent !important;
+}
+</style></div></div>
+</div>
+<p>In the previous section we learned the very basics of working with Panel’s API. In this section we will learn how to link widgets to outputs “manually” rather than using <code class="docutils literal notranslate"><span class="pre">.interactive</span></code>.</p>
+<p>In this section we will once again make use of the earthquake dataset we loaded previously and compute some statistics:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_parquet</span><span class="p">(</span><span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="s1">'../data/earthquakes-projected.parq'</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">'time'</span><span class="p">,</span> <span class="s1">'place'</span><span class="p">,</span> <span class="s1">'mag'</span><span class="p">])</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">'time'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">'%m/</span><span class="si">%d</span><span class="s1">/%Y %H:%M:%S'</span><span class="p">)</span> 
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="widgets-and-reactive-components">
+<h2>Widgets and reactive components<a class="headerlink" href="#widgets-and-reactive-components" title="Permalink to this heading">#</a></h2>
+<p>Widgets are built on Parameters provided by the <a class="reference external" href="https://param.holoviz.org">Param</a> library. E.g., consider a <code class="docutils literal notranslate"><span class="pre">RangeSlider</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mag_filter</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">RangeSlider</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">'Magnitude'</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">mag</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+
+<span class="n">mag_filter</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div id="11d03706-18ba-43b2-ac6d-70971180a7f7">
+<div data-root-id="11d03706-18ba-43b2-ac6d-70971180a7f7" id="f1877c07-7952-43fd-bc8b-7a5b548dcf5c" style="display: contents;"></div>
+</div>
+<script type="application/javascript">(function(root) {
+  var docs_json = {"3ce48ea7-8af4-42ca-8eb7-797d58232770":{"version":"3.2.2","title":"Bokeh Application","roots":[{"type":"object","name":"RangeSlider","id":"11d03706-18ba-43b2-ac6d-70971180a7f7","attributes":{"stylesheets":["\n:host(.pn-loading.pn-arc):before, .pn-loading.pn-arc:before {\n  background-image: url(\"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHN0eWxlPSJtYXJnaW46IGF1dG87IGJhY2tncm91bmQ6IG5vbmU7IGRpc3BsYXk6IGJsb2NrOyBzaGFwZS1yZW5kZXJpbmc6IGF1dG87IiB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ieE1pZFlNaWQiPiAgPGNpcmNsZSBjeD0iNTAiIGN5PSI1MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYzNjM2MzIiBzdHJva2Utd2lkdGg9IjEwIiByPSIzNSIgc3Ryb2tlLWRhc2hhcnJheT0iMTY0LjkzMzYxNDMxMzQ2NDE1IDU2Ljk3Nzg3MTQzNzgyMTM4Ij4gICAgPGFuaW1hdGVUcmFuc2Zvcm0gYXR0cmlidXRlTmFtZT0idHJhbnNmb3JtIiB0eXBlPSJyb3RhdGUiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIiBkdXI9IjFzIiB2YWx1ZXM9IjAgNTAgNTA7MzYwIDUwIDUwIiBrZXlUaW1lcz0iMDsxIj48L2FuaW1hdGVUcmFuc2Zvcm0+ICA8L2NpcmNsZT48L3N2Zz4=\");\n  background-size: auto calc(min(50%, 400px));\n}",{"type":"object","name":"ImportedStyleSheet","id":"c8f0349b-6a71-4b08-883e-ea27c54b50e2","attributes":{"url":"https://cdn.holoviz.org/panel/1.2.0/dist/css/loading.css"}},{"type":"object","name":"ImportedStyleSheet","id":"05bee45b-5c65-47a3-b0ba-0ceb919a679e","attributes":{"url":"https://cdn.holoviz.org/panel/1.2.0/dist/bundled/theme/default.css"}},{"type":"object","name":"ImportedStyleSheet","id":"f04c5e44-ea8e-4bf1-a753-bf208cd9e38f","attributes":{"url":"https://cdn.holoviz.org/panel/1.2.0/dist/bundled/theme/native.css"}}],"margin":[5,10],"align":"start","title":"Magnitude","value":[0,9.1],"start":0,"end":9.1,"step":0.1}},{"type":"object","name":"panel.models.comm_manager.CommManager","id":"24204b48-cd8c-4b9b-91ba-2f6659db30fd","attributes":{"plot_id":"11d03706-18ba-43b2-ac6d-70971180a7f7","comm_id":"556e2d9577af42819612eb0345390bc4","client_comm_id":"a47d7fc9c4cd4c2fbb55e587222b7019"}},{"type":"object","name":"panel.models.location.Location","id":"d7708cca-2bde-4fba-9798-6d03ef4121e7","attributes":{"reload":false}}],"defs":[{"type":"model","name":"ReactiveHTML1"},{"type":"model","name":"FlexBox1","properties":[{"name":"align_content","kind":"Any","default":"flex-start"},{"name":"align_items","kind":"Any","default":"flex-start"},{"name":"flex_direction","kind":"Any","default":"row"},{"name":"flex_wrap","kind":"Any","default":"wrap"},{"name":"justify_content","kind":"Any","default":"flex-start"}]},{"type":"model","name":"FloatPanel1","properties":[{"name":"config","kind":"Any","default":{"type":"map"}},{"name":"contained","kind":"Any","default":true},{"name":"position","kind":"Any","default":"right-top"},{"name":"offsetx","kind":"Any","default":null},{"name":"offsety","kind":"Any","default":null},{"name":"theme","kind":"Any","default":"primary"},{"name":"status","kind":"Any","default":"normalized"}]},{"type":"model","name":"GridStack1","properties":[{"name":"mode","kind":"Any","default":"warn"},{"name":"ncols","kind":"Any","default":null},{"name":"nrows","kind":"Any","default":null},{"name":"allow_resize","kind":"Any","default":true},{"name":"allow_drag","kind":"Any","default":true},{"name":"state","kind":"Any","default":[]}]},{"type":"model","name":"drag1","properties":[{"name":"slider_width","kind":"Any","default":5},{"name":"slider_color","kind":"Any","default":"black"},{"name":"value","kind":"Any","default":50}]},{"type":"model","name":"click1","properties":[{"name":"terminal_output","kind":"Any","default":""},{"name":"debug_name","kind":"Any","default":""},{"name":"clears","kind":"Any","default":0}]},{"type":"model","name":"FastWrapper1","properties":[{"name":"object","kind":"Any","default":null},{"name":"style","kind":"Any","default":null}]},{"type":"model","name":"NotificationAreaBase1","properties":[{"name":"position","kind":"Any","default":"bottom-right"},{"name":"_clear","kind":"Any","default":0}]},{"type":"model","name":"NotificationArea1","properties":[{"name":"notifications","kind":"Any","default":[]},{"name":"position","kind":"Any","default":"bottom-right"},{"name":"_clear","kind":"Any","default":0},{"name":"types","kind":"Any","default":[{"type":"map","entries":[["type","warning"],["background","#ffc107"],["icon",{"type":"map","entries":[["className","fas fa-exclamation-triangle"],["tagName","i"],["color","white"]]}]]},{"type":"map","entries":[["type","info"],["background","#007bff"],["icon",{"type":"map","entries":[["className","fas fa-info-circle"],["tagName","i"],["color","white"]]}]]}]}]},{"type":"model","name":"Notification","properties":[{"name":"background","kind":"Any","default":null},{"name":"duration","kind":"Any","default":3000},{"name":"icon","kind":"Any","default":null},{"name":"message","kind":"Any","default":""},{"name":"notification_type","kind":"Any","default":null},{"name":"_destroyed","kind":"Any","default":false}]},{"type":"model","name":"TemplateActions1","properties":[{"name":"open_modal","kind":"Any","default":0},{"name":"close_modal","kind":"Any","default":0}]},{"type":"model","name":"BootstrapTemplateActions1","properties":[{"name":"open_modal","kind":"Any","default":0},{"name":"close_modal","kind":"Any","default":0}]},{"type":"model","name":"MaterialTemplateActions1","properties":[{"name":"open_modal","kind":"Any","default":0},{"name":"close_modal","kind":"Any","default":0}]}]}};
+  var render_items = [{"docid":"3ce48ea7-8af4-42ca-8eb7-797d58232770","roots":{"11d03706-18ba-43b2-ac6d-70971180a7f7":"f1877c07-7952-43fd-bc8b-7a5b548dcf5c"},"root_ids":["11d03706-18ba-43b2-ac6d-70971180a7f7"]}];
+  var docs = Object.values(docs_json)
+  if (!docs) {
+    return
+  }
+  const py_version = docs[0].version.replace('rc', '-rc.').replace('.dev', '-dev.')
+  const is_dev = py_version.indexOf("+") !== -1 || py_version.indexOf("-") !== -1
+  function embed_document(root) {
+    var Bokeh = get_bokeh(root)
+    Bokeh.embed.embed_items_notebook(docs_json, render_items);
+    for (const render_item of render_items) {
+      for (const root_id of render_item.root_ids) {
+	const id_el = document.getElementById(root_id)
+	if (id_el.children.length && (id_el.children[0].className === 'bk-root')) {
+	  const root_el = id_el.children[0]
+	  root_el.id = root_el.id + '-rendered'
+	}
+      }
+    }
+  }
+  function get_bokeh(root) {
+    if (root.Bokeh === undefined) {
+      return null
+    } else if (root.Bokeh.version !== py_version && !is_dev) {
+      if (root.Bokeh.versions === undefined || !root.Bokeh.versions.has(py_version)) {
+	return null
+      }
+      return root.Bokeh.versions.get(py_version);
+    } else if (root.Bokeh.version === py_version) {
+      return root.Bokeh
+    }
+    return null
+  }
+  function is_loaded(root) {
+    var Bokeh = get_bokeh(root)
+    return (Bokeh != null && Bokeh.Panel !== undefined)
+  }
+  if (is_loaded(root)) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (is_loaded(root)) {
+        clearInterval(timer);
+        embed_document(root);
+      } else if (document.readyState == "complete") {
+        attempts++;
+        if (attempts > 200) {
+          clearInterval(timer);
+	  var Bokeh = get_bokeh(root)
+	  if (Bokeh == null || Bokeh.Panel == null) {
+            console.warn("Panel: ERROR: Unable to run Panel code because Bokeh or Panel library is missing");
+	  } else {
+	    console.warn("Panel: WARNING: Attempting to render but not all required libraries could be resolved.")
+	    embed_document(root)
+	  }
+        }
+      }
+    }, 25, root)
+  }
+})(window);</script></div></div>
+</div>
+<p>Here the widget <code class="docutils literal notranslate"><span class="pre">value</span></code> is a Parameter that is set to a tuple of the selected upper and lower bound. Parameters are an extended type of Python attribute that declare their type, range, etc. so that other code can interact with them in a consistent way. When we change the range using the widget the <code class="docutils literal notranslate"><span class="pre">value</span></code> parameter updates, and vice versa if you change the value parameter manually:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mag_filter</span><span class="o">.</span><span class="n">value</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0, 9.1)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we will declare a second widget:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">place_filter</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">TextInput</span><span class="p">(</span><span class="n">placeholder</span><span class="o">=</span><span class="s1">'Enter a placename'</span><span class="p">)</span>
+
+<span class="n">place_filter</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div id="7e163b9c-1373-422d-9372-07038dc10bb6">
+<div data-root-id="7e163b9c-1373-422d-9372-07038dc10bb6" id="a3e9ee3c-a211-40a5-88da-f60d208feef6" style="display: contents;"></div>
+</div>
+<script type="application/javascript">(function(root) {
+  var docs_json = {"523bb26c-5009-4993-ae8e-70c70719ccd6":{"version":"3.2.2","title":"Bokeh Application","roots":[{"type":"object","name":"TextInput","id":"7e163b9c-1373-422d-9372-07038dc10bb6","attributes":{"stylesheets":["\n:host(.pn-loading.pn-arc):before, .pn-loading.pn-arc:before {\n  background-image: url(\"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHN0eWxlPSJtYXJnaW46IGF1dG87IGJhY2tncm91bmQ6IG5vbmU7IGRpc3BsYXk6IGJsb2NrOyBzaGFwZS1yZW5kZXJpbmc6IGF1dG87IiB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ieE1pZFlNaWQiPiAgPGNpcmNsZSBjeD0iNTAiIGN5PSI1MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYzNjM2MzIiBzdHJva2Utd2lkdGg9IjEwIiByPSIzNSIgc3Ryb2tlLWRhc2hhcnJheT0iMTY0LjkzMzYxNDMxMzQ2NDE1IDU2Ljk3Nzg3MTQzNzgyMTM4Ij4gICAgPGFuaW1hdGVUcmFuc2Zvcm0gYXR0cmlidXRlTmFtZT0idHJhbnNmb3JtIiB0eXBlPSJyb3RhdGUiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIiBkdXI9IjFzIiB2YWx1ZXM9IjAgNTAgNTA7MzYwIDUwIDUwIiBrZXlUaW1lcz0iMDsxIj48L2FuaW1hdGVUcmFuc2Zvcm0+ICA8L2NpcmNsZT48L3N2Zz4=\");\n  background-size: auto calc(min(50%, 400px));\n}",{"type":"object","name":"ImportedStyleSheet","id":"2b04e4a0-fcb2-444d-b9a2-65372582a7ee","attributes":{"url":"https://cdn.holoviz.org/panel/1.2.0/dist/css/loading.css"}},{"type":"object","name":"ImportedStyleSheet","id":"8dd55261-c851-478f-915c-08f28c98f235","attributes":{"url":"https://cdn.holoviz.org/panel/1.2.0/dist/bundled/theme/default.css"}},{"type":"object","name":"ImportedStyleSheet","id":"a4c1f263-cb8e-4b22-88f4-c7fdec8bb8f8","attributes":{"url":"https://cdn.holoviz.org/panel/1.2.0/dist/bundled/theme/native.css"}}],"width":300,"min_width":300,"margin":[5,10],"align":"start","placeholder":"Enter a placename","max_length":5000}},{"type":"object","name":"panel.models.comm_manager.CommManager","id":"2783f5f2-0503-45f7-b6fa-0f64a51fe628","attributes":{"plot_id":"7e163b9c-1373-422d-9372-07038dc10bb6","comm_id":"7a1e116b95ac4decae9213c0a30598d1","client_comm_id":"dae849d7189243529eeb23e83e733562"}}],"defs":[{"type":"model","name":"ReactiveHTML1"},{"type":"model","name":"FlexBox1","properties":[{"name":"align_content","kind":"Any","default":"flex-start"},{"name":"align_items","kind":"Any","default":"flex-start"},{"name":"flex_direction","kind":"Any","default":"row"},{"name":"flex_wrap","kind":"Any","default":"wrap"},{"name":"justify_content","kind":"Any","default":"flex-start"}]},{"type":"model","name":"FloatPanel1","properties":[{"name":"config","kind":"Any","default":{"type":"map"}},{"name":"contained","kind":"Any","default":true},{"name":"position","kind":"Any","default":"right-top"},{"name":"offsetx","kind":"Any","default":null},{"name":"offsety","kind":"Any","default":null},{"name":"theme","kind":"Any","default":"primary"},{"name":"status","kind":"Any","default":"normalized"}]},{"type":"model","name":"GridStack1","properties":[{"name":"mode","kind":"Any","default":"warn"},{"name":"ncols","kind":"Any","default":null},{"name":"nrows","kind":"Any","default":null},{"name":"allow_resize","kind":"Any","default":true},{"name":"allow_drag","kind":"Any","default":true},{"name":"state","kind":"Any","default":[]}]},{"type":"model","name":"drag1","properties":[{"name":"slider_width","kind":"Any","default":5},{"name":"slider_color","kind":"Any","default":"black"},{"name":"value","kind":"Any","default":50}]},{"type":"model","name":"click1","properties":[{"name":"terminal_output","kind":"Any","default":""},{"name":"debug_name","kind":"Any","default":""},{"name":"clears","kind":"Any","default":0}]},{"type":"model","name":"FastWrapper1","properties":[{"name":"object","kind":"Any","default":null},{"name":"style","kind":"Any","default":null}]},{"type":"model","name":"NotificationAreaBase1","properties":[{"name":"position","kind":"Any","default":"bottom-right"},{"name":"_clear","kind":"Any","default":0}]},{"type":"model","name":"NotificationArea1","properties":[{"name":"notifications","kind":"Any","default":[]},{"name":"position","kind":"Any","default":"bottom-right"},{"name":"_clear","kind":"Any","default":0},{"name":"types","kind":"Any","default":[{"type":"map","entries":[["type","warning"],["background","#ffc107"],["icon",{"type":"map","entries":[["className","fas fa-exclamation-triangle"],["tagName","i"],["color","white"]]}]]},{"type":"map","entries":[["type","info"],["background","#007bff"],["icon",{"type":"map","entries":[["className","fas fa-info-circle"],["tagName","i"],["color","white"]]}]]}]}]},{"type":"model","name":"Notification","properties":[{"name":"background","kind":"Any","default":null},{"name":"duration","kind":"Any","default":3000},{"name":"icon","kind":"Any","default":null},{"name":"message","kind":"Any","default":""},{"name":"notification_type","kind":"Any","default":null},{"name":"_destroyed","kind":"Any","default":false}]},{"type":"model","name":"TemplateActions1","properties":[{"name":"open_modal","kind":"Any","default":0},{"name":"close_modal","kind":"Any","default":0}]},{"type":"model","name":"BootstrapTemplateActions1","properties":[{"name":"open_modal","kind":"Any","default":0},{"name":"close_modal","kind":"Any","default":0}]},{"type":"model","name":"MaterialTemplateActions1","properties":[{"name":"open_modal","kind":"Any","default":0},{"name":"close_modal","kind":"Any","default":0}]}]}};
+  var render_items = [{"docid":"523bb26c-5009-4993-ae8e-70c70719ccd6","roots":{"7e163b9c-1373-422d-9372-07038dc10bb6":"a3e9ee3c-a211-40a5-88da-f60d208feef6"},"root_ids":["7e163b9c-1373-422d-9372-07038dc10bb6"]}];
+  var docs = Object.values(docs_json)
+  if (!docs) {
+    return
+  }
+  const py_version = docs[0].version.replace('rc', '-rc.').replace('.dev', '-dev.')
+  const is_dev = py_version.indexOf("+") !== -1 || py_version.indexOf("-") !== -1
+  function embed_document(root) {
+    var Bokeh = get_bokeh(root)
+    Bokeh.embed.embed_items_notebook(docs_json, render_items);
+    for (const render_item of render_items) {
+      for (const root_id of render_item.root_ids) {
+	const id_el = document.getElementById(root_id)
+	if (id_el.children.length && (id_el.children[0].className === 'bk-root')) {
+	  const root_el = id_el.children[0]
+	  root_el.id = root_el.id + '-rendered'
+	}
+      }
+    }
+  }
+  function get_bokeh(root) {
+    if (root.Bokeh === undefined) {
+      return null
+    } else if (root.Bokeh.version !== py_version && !is_dev) {
+      if (root.Bokeh.versions === undefined || !root.Bokeh.versions.has(py_version)) {
+	return null
+      }
+      return root.Bokeh.versions.get(py_version);
+    } else if (root.Bokeh.version === py_version) {
+      return root.Bokeh
+    }
+    return null
+  }
+  function is_loaded(root) {
+    var Bokeh = get_bokeh(root)
+    return (Bokeh != null && Bokeh.Panel !== undefined)
+  }
+  if (is_loaded(root)) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (is_loaded(root)) {
+        clearInterval(timer);
+        embed_document(root);
+      } else if (document.readyState == "complete") {
+        attempts++;
+        if (attempts > 200) {
+          clearInterval(timer);
+	  var Bokeh = get_bokeh(root)
+	  if (Bokeh == null || Bokeh.Panel == null) {
+            console.warn("Panel: ERROR: Unable to run Panel code because Bokeh or Panel library is missing");
+	  } else {
+	    console.warn("Panel: WARNING: Attempting to render but not all required libraries could be resolved.")
+	    embed_document(root)
+	  }
+        }
+      }
+    }, 25, root)
+  }
+})(window);</script></div></div>
+</div>
+<p>In addition to the fully automated <code class="docutils literal notranslate"><span class="pre">.interactive()</span></code> interface in hvPlot, Panel offers a very concise, powerful approach of declaring dependencies between the parameters of a object and the arguments to a function. In practice, this middle ground provides enough control for nearly any app, without the complexity of explicit chains of callbacks that would otherwise be required when customizing the behavior.</p>
+<p>Here we will create a little function that can filter the dataframe:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">filter_df</span><span class="p">(</span><span class="n">mag_range</span><span class="p">,</span> <span class="n">place</span><span class="p">):</span>
+    <span class="n">lower</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">mag</span><span class="o">&gt;</span><span class="n">mag_range</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">upper</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">mag</span><span class="o">&lt;</span><span class="n">mag_range</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">dffilter</span> <span class="o">=</span> <span class="n">lower</span> <span class="o">&amp;</span> <span class="n">upper</span>
+    <span class="k">if</span> <span class="n">place</span><span class="p">:</span>
+        <span class="n">dffilter</span> <span class="o">&amp;=</span> <span class="n">df</span><span class="o">.</span><span class="n">place</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="n">place</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">df</span><span class="p">[</span><span class="n">dffilter</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then we can bind the the widgets we created to the inputs of this function using <code class="docutils literal notranslate"><span class="pre">pn.bind</span></code> and lay out the widget and the function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filtered_view</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
+    <span class="n">pn</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">mag_filter</span><span class="p">,</span> <span class="n">place_filter</span><span class="p">),</span>
+    <span class="n">pn</span><span class="o">.</span><span class="n">panel</span><span class="p">(</span><span class="n">pn</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">filter_df</span><span class="p">,</span> <span class="n">mag_range</span><span class="o">=</span><span class="n">mag_filter</span><span class="p">,</span> <span class="n">place</span><span class="o">=</span><span class="n">place_filter</span><span class="p">),</span> <span class="n">width</span><span class="o">=</span><span class="mi">400</span><span class="p">))</span>
+
+<span class="n">filtered_view</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div id="7d94342f-b172-4860-83d4-5f38dd433f93">
+<div data-root-id="7d94342f-b172-4860-83d4-5f38dd433f93" id="a6493d92-4f7c-4c18-8b4b-e4a964984f83" style="display: contents;"></div>
+</div>
+<script type="application/javascript">(function(root) {
+  var docs_json = {"70e48b9d-ead9-4388-a16e-6f531638c723":{"version":"3.2.2","title":"Bokeh Application","roots":[{"type":"object","name":"Row","id":"7d94342f-b172-4860-83d4-5f38dd433f93","attributes":{"name":"Row01421","stylesheets":["\n:host(.pn-loading.pn-arc):before, .pn-loading.pn-arc:before {\n  background-image: url(\"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHN0eWxlPSJtYXJnaW46IGF1dG87IGJhY2tncm91bmQ6IG5vbmU7IGRpc3BsYXk6IGJsb2NrOyBzaGFwZS1yZW5kZXJpbmc6IGF1dG87IiB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ieE1pZFlNaWQiPiAgPGNpcmNsZSBjeD0iNTAiIGN5PSI1MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYzNjM2MzIiBzdHJva2Utd2lkdGg9IjEwIiByPSIzNSIgc3Ryb2tlLWRhc2hhcnJheT0iMTY0LjkzMzYxNDMxMzQ2NDE1IDU2Ljk3Nzg3MTQzNzgyMTM4Ij4gICAgPGFuaW1hdGVUcmFuc2Zvcm0gYXR0cmlidXRlTmFtZT0idHJhbnNmb3JtIiB0eXBlPSJyb3RhdGUiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIiBkdXI9IjFzIiB2YWx1ZXM9IjAgNTAgNTA7MzYwIDUwIDUwIiBrZXlUaW1lcz0iMDsxIj48L2FuaW1hdGVUcmFuc2Zvcm0+ICA8L2NpcmNsZT48L3N2Zz4=\");\n  background-size: auto calc(min(50%, 400px));\n}",{"type":"object","name":"ImportedStyleSheet","id":"7a566389-d71f-4669-98a7-d6f282baf2ef","attributes":{"url":"https://cdn.holoviz.org/panel/1.2.0/dist/css/loading.css"}},{"type":"object","name":"ImportedStyleSheet","id":"365b7bd6-8656-48dc-8bf6-308218ebb486","attributes":{"url":"https://cdn.holoviz.org/panel/1.2.0/dist/css/listpanel.css"}},{"type":"object","name":"ImportedStyleSheet","id":"e07a7181-c662-4dca-91c1-f749898de79f","attributes":{"url":"https://cdn.holoviz.org/panel/1.2.0/dist/bundled/theme/default.css"}},{"type":"object","name":"ImportedStyleSheet","id":"a3cf2776-c175-4d3c-8892-78e209865f3b","attributes":{"url":"https://cdn.holoviz.org/panel/1.2.0/dist/bundled/theme/native.css"}}],"margin":0,"align":"start","children":[{"type":"object","name":"Column","id":"d7e2af0f-0385-4cf6-ae23-80f157460177","attributes":{"name":"Column01397","stylesheets":["\n:host(.pn-loading.pn-arc):before, .pn-loading.pn-arc:before {\n  background-image: url(\"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHN0eWxlPSJtYXJnaW46IGF1dG87IGJhY2tncm91bmQ6IG5vbmU7IGRpc3BsYXk6IGJsb2NrOyBzaGFwZS1yZW5kZXJpbmc6IGF1dG87IiB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ieE1pZFlNaWQiPiAgPGNpcmNsZSBjeD0iNTAiIGN5PSI1MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYzNjM2MzIiBzdHJva2Utd2lkdGg9IjEwIiByPSIzNSIgc3Ryb2tlLWRhc2hhcnJheT0iMTY0LjkzMzYxNDMxMzQ2NDE1IDU2Ljk3Nzg3MTQzNzgyMTM4Ij4gICAgPGFuaW1hdGVUcmFuc2Zvcm0gYXR0cmlidXRlTmFtZT0idHJhbnNmb3JtIiB0eXBlPSJyb3RhdGUiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIiBkdXI9IjFzIiB2YWx1ZXM9IjAgNTAgNTA7MzYwIDUwIDUwIiBrZXlUaW1lcz0iMDsxIj48L2FuaW1hdGVUcmFuc2Zvcm0+ICA8L2NpcmNsZT48L3N2Zz4=\");\n  background-size: auto calc(min(50%, 400px));\n}",{"id":"7a566389-d71f-4669-98a7-d6f282baf2ef"},{"id":"365b7bd6-8656-48dc-8bf6-308218ebb486"},{"id":"e07a7181-c662-4dca-91c1-f749898de79f"},{"id":"a3cf2776-c175-4d3c-8892-78e209865f3b"}],"margin":0,"align":"start","children":[{"type":"object","name":"RangeSlider","id":"3cc39146-a4ea-4127-9f27-99a8799ef01d","attributes":{"stylesheets":["\n:host(.pn-loading.pn-arc):before, .pn-loading.pn-arc:before {\n  background-image: url(\"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHN0eWxlPSJtYXJnaW46IGF1dG87IGJhY2tncm91bmQ6IG5vbmU7IGRpc3BsYXk6IGJsb2NrOyBzaGFwZS1yZW5kZXJpbmc6IGF1dG87IiB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ieE1pZFlNaWQiPiAgPGNpcmNsZSBjeD0iNTAiIGN5PSI1MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYzNjM2MzIiBzdHJva2Utd2lkdGg9IjEwIiByPSIzNSIgc3Ryb2tlLWRhc2hhcnJheT0iMTY0LjkzMzYxNDMxMzQ2NDE1IDU2Ljk3Nzg3MTQzNzgyMTM4Ij4gICAgPGFuaW1hdGVUcmFuc2Zvcm0gYXR0cmlidXRlTmFtZT0idHJhbnNmb3JtIiB0eXBlPSJyb3RhdGUiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIiBkdXI9IjFzIiB2YWx1ZXM9IjAgNTAgNTA7MzYwIDUwIDUwIiBrZXlUaW1lcz0iMDsxIj48L2FuaW1hdGVUcmFuc2Zvcm0+ICA8L2NpcmNsZT48L3N2Zz4=\");\n  background-size: auto calc(min(50%, 400px));\n}",{"id":"7a566389-d71f-4669-98a7-d6f282baf2ef"},{"id":"e07a7181-c662-4dca-91c1-f749898de79f"},{"id":"a3cf2776-c175-4d3c-8892-78e209865f3b"}],"margin":[5,10],"align":"start","title":"Magnitude","value":[0,9.1],"start":0,"end":9.1,"step":0.1}},{"type":"object","name":"TextInput","id":"5cced844-04c1-438f-bde0-01b5cc89d7a0","attributes":{"stylesheets":["\n:host(.pn-loading.pn-arc):before, .pn-loading.pn-arc:before {\n  background-image: url(\"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHN0eWxlPSJtYXJnaW46IGF1dG87IGJhY2tncm91bmQ6IG5vbmU7IGRpc3BsYXk6IGJsb2NrOyBzaGFwZS1yZW5kZXJpbmc6IGF1dG87IiB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ieE1pZFlNaWQiPiAgPGNpcmNsZSBjeD0iNTAiIGN5PSI1MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYzNjM2MzIiBzdHJva2Utd2lkdGg9IjEwIiByPSIzNSIgc3Ryb2tlLWRhc2hhcnJheT0iMTY0LjkzMzYxNDMxMzQ2NDE1IDU2Ljk3Nzg3MTQzNzgyMTM4Ij4gICAgPGFuaW1hdGVUcmFuc2Zvcm0gYXR0cmlidXRlTmFtZT0idHJhbnNmb3JtIiB0eXBlPSJyb3RhdGUiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIiBkdXI9IjFzIiB2YWx1ZXM9IjAgNTAgNTA7MzYwIDUwIDUwIiBrZXlUaW1lcz0iMDsxIj48L2FuaW1hdGVUcmFuc2Zvcm0+ICA8L2NpcmNsZT48L3N2Zz4=\");\n  background-size: auto calc(min(50%, 400px));\n}",{"id":"7a566389-d71f-4669-98a7-d6f282baf2ef"},{"id":"e07a7181-c662-4dca-91c1-f749898de79f"},{"id":"a3cf2776-c175-4d3c-8892-78e209865f3b"}],"width":300,"min_width":300,"margin":[5,10],"align":"start","placeholder":"Enter a placename","max_length":5000}}]}},{"type":"object","name":"Column","id":"4a433fb9-0dad-44b9-ab62-eeb41abe7c32","attributes":{"name":"Column01412","stylesheets":["\n:host(.pn-loading.pn-arc):before, .pn-loading.pn-arc:before {\n  background-image: url(\"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHN0eWxlPSJtYXJnaW46IGF1dG87IGJhY2tncm91bmQ6IG5vbmU7IGRpc3BsYXk6IGJsb2NrOyBzaGFwZS1yZW5kZXJpbmc6IGF1dG87IiB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ieE1pZFlNaWQiPiAgPGNpcmNsZSBjeD0iNTAiIGN5PSI1MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYzNjM2MzIiBzdHJva2Utd2lkdGg9IjEwIiByPSIzNSIgc3Ryb2tlLWRhc2hhcnJheT0iMTY0LjkzMzYxNDMxMzQ2NDE1IDU2Ljk3Nzg3MTQzNzgyMTM4Ij4gICAgPGFuaW1hdGVUcmFuc2Zvcm0gYXR0cmlidXRlTmFtZT0idHJhbnNmb3JtIiB0eXBlPSJyb3RhdGUiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIiBkdXI9IjFzIiB2YWx1ZXM9IjAgNTAgNTA7MzYwIDUwIDUwIiBrZXlUaW1lcz0iMDsxIj48L2FuaW1hdGVUcmFuc2Zvcm0+ICA8L2NpcmNsZT48L3N2Zz4=\");\n  background-size: auto calc(min(50%, 400px));\n}",{"id":"7a566389-d71f-4669-98a7-d6f282baf2ef"},{"id":"365b7bd6-8656-48dc-8bf6-308218ebb486"},{"id":"e07a7181-c662-4dca-91c1-f749898de79f"},{"id":"a3cf2776-c175-4d3c-8892-78e209865f3b"}],"width":400,"min_width":400,"margin":0,"align":"start","children":[{"type":"object","name":"panel.models.markup.HTML","id":"68e5b48f-6b96-4be0-b9a3-54b6d1c36aca","attributes":{"stylesheets":["\n:host(.pn-loading.pn-arc):before, .pn-loading.pn-arc:before {\n  background-image: url(\"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHN0eWxlPSJtYXJnaW46IGF1dG87IGJhY2tncm91bmQ6IG5vbmU7IGRpc3BsYXk6IGJsb2NrOyBzaGFwZS1yZW5kZXJpbmc6IGF1dG87IiB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ieE1pZFlNaWQiPiAgPGNpcmNsZSBjeD0iNTAiIGN5PSI1MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYzNjM2MzIiBzdHJva2Utd2lkdGg9IjEwIiByPSIzNSIgc3Ryb2tlLWRhc2hhcnJheT0iMTY0LjkzMzYxNDMxMzQ2NDE1IDU2Ljk3Nzg3MTQzNzgyMTM4Ij4gICAgPGFuaW1hdGVUcmFuc2Zvcm0gYXR0cmlidXRlTmFtZT0idHJhbnNmb3JtIiB0eXBlPSJyb3RhdGUiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIiBkdXI9IjFzIiB2YWx1ZXM9IjAgNTAgNTA7MzYwIDUwIDUwIiBrZXlUaW1lcz0iMDsxIj48L2FuaW1hdGVUcmFuc2Zvcm0+ICA8L2NpcmNsZT48L3N2Zz4=\");\n  background-size: auto calc(min(50%, 400px));\n}",{"id":"7a566389-d71f-4669-98a7-d6f282baf2ef"},{"type":"object","name":"ImportedStyleSheet","id":"2ee53306-4c56-4217-938a-5b2edca36b9c","attributes":{"url":"https://cdn.holoviz.org/panel/1.2.0/dist/css/dataframe.css"}},{"id":"e07a7181-c662-4dca-91c1-f749898de79f"},{"id":"a3cf2776-c175-4d3c-8892-78e209865f3b"}],"width":400,"min_width":400,"margin":[5,10],"align":"start","text":"&lt;table class=&quot;dataframe panel-df&quot;&gt;\n  &lt;thead&gt;\n    &lt;tr style=&quot;text-align: right;&quot;&gt;\n      &lt;th&gt;&lt;/th&gt;\n      &lt;th&gt;time&lt;/th&gt;\n      &lt;th&gt;place&lt;/th&gt;\n      &lt;th&gt;mag&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;0&lt;/th&gt;\n      &lt;td&gt;01/31/2000 23:52:00&lt;/td&gt;\n      &lt;td&gt;Nevada&lt;/td&gt;\n      &lt;td&gt;0.60&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;1&lt;/th&gt;\n      &lt;td&gt;01/31/2000 23:44:54&lt;/td&gt;\n      &lt;td&gt;26km NNW of Twentynine Palms, California&lt;/td&gt;\n      &lt;td&gt;1.72&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;2&lt;/th&gt;\n      &lt;td&gt;01/31/2000 23:28:38&lt;/td&gt;\n      &lt;td&gt;Trinidad, Trinidad and Tobago&lt;/td&gt;\n      &lt;td&gt;2.10&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;3&lt;/th&gt;\n      &lt;td&gt;01/31/2000 23:05:22&lt;/td&gt;\n      &lt;td&gt;near the coast of Ecuador&lt;/td&gt;\n      &lt;td&gt;4.50&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;4&lt;/th&gt;\n      &lt;td&gt;01/31/2000 22:56:50&lt;/td&gt;\n      &lt;td&gt;Nevada&lt;/td&gt;\n      &lt;td&gt;1.40&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;","disable_math":true}}]}}]}},{"type":"object","name":"panel.models.comm_manager.CommManager","id":"7d995a4b-350d-4593-96ff-b0800f88f1a7","attributes":{"plot_id":"7d94342f-b172-4860-83d4-5f38dd433f93","comm_id":"7fd5678e9b2847d9802d4a5ae90af318","client_comm_id":"9b1bca0d4e0c458db2a3a7e958c50c6f"}}],"defs":[{"type":"model","name":"ReactiveHTML1"},{"type":"model","name":"FlexBox1","properties":[{"name":"align_content","kind":"Any","default":"flex-start"},{"name":"align_items","kind":"Any","default":"flex-start"},{"name":"flex_direction","kind":"Any","default":"row"},{"name":"flex_wrap","kind":"Any","default":"wrap"},{"name":"justify_content","kind":"Any","default":"flex-start"}]},{"type":"model","name":"FloatPanel1","properties":[{"name":"config","kind":"Any","default":{"type":"map"}},{"name":"contained","kind":"Any","default":true},{"name":"position","kind":"Any","default":"right-top"},{"name":"offsetx","kind":"Any","default":null},{"name":"offsety","kind":"Any","default":null},{"name":"theme","kind":"Any","default":"primary"},{"name":"status","kind":"Any","default":"normalized"}]},{"type":"model","name":"GridStack1","properties":[{"name":"mode","kind":"Any","default":"warn"},{"name":"ncols","kind":"Any","default":null},{"name":"nrows","kind":"Any","default":null},{"name":"allow_resize","kind":"Any","default":true},{"name":"allow_drag","kind":"Any","default":true},{"name":"state","kind":"Any","default":[]}]},{"type":"model","name":"drag1","properties":[{"name":"slider_width","kind":"Any","default":5},{"name":"slider_color","kind":"Any","default":"black"},{"name":"value","kind":"Any","default":50}]},{"type":"model","name":"click1","properties":[{"name":"terminal_output","kind":"Any","default":""},{"name":"debug_name","kind":"Any","default":""},{"name":"clears","kind":"Any","default":0}]},{"type":"model","name":"FastWrapper1","properties":[{"name":"object","kind":"Any","default":null},{"name":"style","kind":"Any","default":null}]},{"type":"model","name":"NotificationAreaBase1","properties":[{"name":"position","kind":"Any","default":"bottom-right"},{"name":"_clear","kind":"Any","default":0}]},{"type":"model","name":"NotificationArea1","properties":[{"name":"notifications","kind":"Any","default":[]},{"name":"position","kind":"Any","default":"bottom-right"},{"name":"_clear","kind":"Any","default":0},{"name":"types","kind":"Any","default":[{"type":"map","entries":[["type","warning"],["background","#ffc107"],["icon",{"type":"map","entries":[["className","fas fa-exclamation-triangle"],["tagName","i"],["color","white"]]}]]},{"type":"map","entries":[["type","info"],["background","#007bff"],["icon",{"type":"map","entries":[["className","fas fa-info-circle"],["tagName","i"],["color","white"]]}]]}]}]},{"type":"model","name":"Notification","properties":[{"name":"background","kind":"Any","default":null},{"name":"duration","kind":"Any","default":3000},{"name":"icon","kind":"Any","default":null},{"name":"message","kind":"Any","default":""},{"name":"notification_type","kind":"Any","default":null},{"name":"_destroyed","kind":"Any","default":false}]},{"type":"model","name":"TemplateActions1","properties":[{"name":"open_modal","kind":"Any","default":0},{"name":"close_modal","kind":"Any","default":0}]},{"type":"model","name":"BootstrapTemplateActions1","properties":[{"name":"open_modal","kind":"Any","default":0},{"name":"close_modal","kind":"Any","default":0}]},{"type":"model","name":"MaterialTemplateActions1","properties":[{"name":"open_modal","kind":"Any","default":0},{"name":"close_modal","kind":"Any","default":0}]}]}};
+  var render_items = [{"docid":"70e48b9d-ead9-4388-a16e-6f531638c723","roots":{"7d94342f-b172-4860-83d4-5f38dd433f93":"a6493d92-4f7c-4c18-8b4b-e4a964984f83"},"root_ids":["7d94342f-b172-4860-83d4-5f38dd433f93"]}];
+  var docs = Object.values(docs_json)
+  if (!docs) {
+    return
+  }
+  const py_version = docs[0].version.replace('rc', '-rc.').replace('.dev', '-dev.')
+  const is_dev = py_version.indexOf("+") !== -1 || py_version.indexOf("-") !== -1
+  function embed_document(root) {
+    var Bokeh = get_bokeh(root)
+    Bokeh.embed.embed_items_notebook(docs_json, render_items);
+    for (const render_item of render_items) {
+      for (const root_id of render_item.root_ids) {
+	const id_el = document.getElementById(root_id)
+	if (id_el.children.length && (id_el.children[0].className === 'bk-root')) {
+	  const root_el = id_el.children[0]
+	  root_el.id = root_el.id + '-rendered'
+	}
+      }
+    }
+  }
+  function get_bokeh(root) {
+    if (root.Bokeh === undefined) {
+      return null
+    } else if (root.Bokeh.version !== py_version && !is_dev) {
+      if (root.Bokeh.versions === undefined || !root.Bokeh.versions.has(py_version)) {
+	return null
+      }
+      return root.Bokeh.versions.get(py_version);
+    } else if (root.Bokeh.version === py_version) {
+      return root.Bokeh
+    }
+    return null
+  }
+  function is_loaded(root) {
+    var Bokeh = get_bokeh(root)
+    return (Bokeh != null && Bokeh.Panel !== undefined)
+  }
+  if (is_loaded(root)) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (is_loaded(root)) {
+        clearInterval(timer);
+        embed_document(root);
+      } else if (document.readyState == "complete") {
+        attempts++;
+        if (attempts > 200) {
+          clearInterval(timer);
+	  var Bokeh = get_bokeh(root)
+	  if (Bokeh == null || Bokeh.Panel == null) {
+            console.warn("Panel: ERROR: Unable to run Panel code because Bokeh or Panel library is missing");
+	  } else {
+	    console.warn("Panel: WARNING: Attempting to render but not all required libraries could be resolved.")
+	    embed_document(root)
+	  }
+        }
+      }
+    }, 25, root)
+  }
+})(window);</script></div></div>
+</div>
+<p>Whenever one of the widgets is changed, the <code class="docutils literal notranslate"><span class="pre">filter_df</span></code> function will be triggered and the DataFrame pane will update with the updated data.</p>
+<p>Let us also take a look at the repr():</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">filtered_view</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Row
+    [0] Column
+        [0] RangeSlider(end=9.1, name='Magnitude', value=(0, 9.1), value_end=9.1)
+        [1] TextInput(placeholder='Enter a placename')
+    [1] ParamFunction(function, _pane=DataFrame, defer_load=False, width=400)
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">ParamFunction</span></code> pane is what listens to changes in the parameters on the widgets and updates the displayed output.</p>
+<section id="exercise">
+<h3>Exercise<a class="headerlink" href="#exercise" title="Permalink to this heading">#</a></h3>
+<p>Declare two <code class="docutils literal notranslate"><span class="pre">IntInput</span></code> widgets with an initial value of 1, then declare a function that depends on the values of both widgets and adds them together. Finally lay out the two widgets and the function in a Panel:</p>
+<!--<details><summary>Solution</summary><br>-->
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">w1</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">IntInput</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
+<span class="n">w2</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">IntInput</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">adder</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">pn</span><span class="o">.</span><span class="n">panel</span><span class="p">(</span><span class="n">v1</span> <span class="o">+</span> <span class="n">v2</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+
+<span class="n">pn</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">w1</span><span class="p">,</span> <span class="s1">'+'</span><span class="p">,</span> <span class="n">w2</span><span class="p">,</span> <span class="s1">'='</span><span class="p">,</span> <span class="n">pn</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">adder</span><span class="p">,</span> <span class="n">v1</span><span class="o">=</span><span class="n">w1</span><span class="p">,</span> <span class="n">v2</span><span class="o">=</span><span class="n">w2</span><span class="p">))</span>
+</pre></div>
+</div>
+<!--</details>--></section>
+</section>
+<section id="callbacks">
+<h2>Callbacks<a class="headerlink" href="#callbacks" title="Permalink to this heading">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">pn.bind</span></code> function is still a very high level way of declaring interactive components. Panel also supports the more low-level approach of writing explicit callbacks that are executed in response to changes in some parameter, e.g. the <code class="docutils literal notranslate"><span class="pre">value</span></code> of a widget. All parameters can be watched using the <code class="docutils literal notranslate"><span class="pre">.param.watch</span></code> API, which will call the provided callback with an event object containing the old and new value of the widget.</p>
+<p>Now that it is loaded we will create a slider which we will eventually use to select the row of the dataframe that we want to display:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">row_slider</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">IntSlider</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next we create a Pane to display the current row of the dataframe with times formatted nicely:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">row_pane</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">panel</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">row_slider</span><span class="o">.</span><span class="n">value</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now that we have defined both the widget and the object we want to update, we can declare a callback to link the two. As we learned in the previous section, assigning a new value to the <code class="docutils literal notranslate"><span class="pre">object</span></code> of a pane will update the display. In the callback we select the row of the dataframe and then assign it to the <code class="docutils literal notranslate"><span class="pre">pane.object</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">df_callback</span><span class="p">(</span><span class="n">event</span><span class="p">):</span>
+    <span class="n">row_pane</span><span class="o">.</span><span class="n">object</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">event</span><span class="o">.</span><span class="n">new</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Lastly we actually have to register this callback. To do so we provide the callback and the parameter we want to trigger the event on the slider’s <code class="docutils literal notranslate"><span class="pre">.param.watch</span></code> method:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">row_slider</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="n">watch</span><span class="p">(</span><span class="n">df_callback</span><span class="p">,</span> <span class="s1">'value'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Watcher(inst=IntSlider(end=2116536), cls=&lt;class 'panel.widgets.slider.IntSlider'&gt;, fn=&lt;function df_callback at 0x7ff1b2fa18b0&gt;, mode='args', onlychanged=True, parameter_names=('value',), what='value', queued=False, precedence=0)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now that everything is connected up, we can put both the widget and the pane in a panel and display them:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pn</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">row_slider</span><span class="p">,</span> <span class="n">row_pane</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">400</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div id="d020a905-a781-40c9-951d-e9a53535d366">
+<div data-root-id="d020a905-a781-40c9-951d-e9a53535d366" id="e9392383-0ba0-4cf3-ac0a-e0245a0f83e0" style="display: contents;"></div>
+</div>
+<script type="application/javascript">(function(root) {
+  var docs_json = {"5eb1137f-d203-4c34-9f76-0392f1cb8bd0":{"version":"3.2.2","title":"Bokeh Application","roots":[{"type":"object","name":"Column","id":"d020a905-a781-40c9-951d-e9a53535d366","attributes":{"name":"Column01441","stylesheets":["\n:host(.pn-loading.pn-arc):before, .pn-loading.pn-arc:before {\n  background-image: url(\"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHN0eWxlPSJtYXJnaW46IGF1dG87IGJhY2tncm91bmQ6IG5vbmU7IGRpc3BsYXk6IGJsb2NrOyBzaGFwZS1yZW5kZXJpbmc6IGF1dG87IiB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ieE1pZFlNaWQiPiAgPGNpcmNsZSBjeD0iNTAiIGN5PSI1MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYzNjM2MzIiBzdHJva2Utd2lkdGg9IjEwIiByPSIzNSIgc3Ryb2tlLWRhc2hhcnJheT0iMTY0LjkzMzYxNDMxMzQ2NDE1IDU2Ljk3Nzg3MTQzNzgyMTM4Ij4gICAgPGFuaW1hdGVUcmFuc2Zvcm0gYXR0cmlidXRlTmFtZT0idHJhbnNmb3JtIiB0eXBlPSJyb3RhdGUiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIiBkdXI9IjFzIiB2YWx1ZXM9IjAgNTAgNTA7MzYwIDUwIDUwIiBrZXlUaW1lcz0iMDsxIj48L2FuaW1hdGVUcmFuc2Zvcm0+ICA8L2NpcmNsZT48L3N2Zz4=\");\n  background-size: auto calc(min(50%, 400px));\n}",{"type":"object","name":"ImportedStyleSheet","id":"86dc11c6-82a0-4a90-9fe3-beda4f0adf74","attributes":{"url":"https://cdn.holoviz.org/panel/1.2.0/dist/css/loading.css"}},{"type":"object","name":"ImportedStyleSheet","id":"5ba8ce4d-5f2e-40e1-a7b6-eb7167a21f86","attributes":{"url":"https://cdn.holoviz.org/panel/1.2.0/dist/css/listpanel.css"}},{"type":"object","name":"ImportedStyleSheet","id":"039a704d-d269-41cc-a0ef-94857bff88e3","attributes":{"url":"https://cdn.holoviz.org/panel/1.2.0/dist/bundled/theme/default.css"}},{"type":"object","name":"ImportedStyleSheet","id":"e2540393-e8bb-452a-a77c-c94034b9b30a","attributes":{"url":"https://cdn.holoviz.org/panel/1.2.0/dist/bundled/theme/native.css"}}],"width":400,"min_width":400,"margin":0,"align":"start","children":[{"type":"object","name":"Slider","id":"d4029c2b-2ae4-4aa8-9267-893f9ea86c93","attributes":{"stylesheets":["\n:host(.pn-loading.pn-arc):before, .pn-loading.pn-arc:before {\n  background-image: url(\"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHN0eWxlPSJtYXJnaW46IGF1dG87IGJhY2tncm91bmQ6IG5vbmU7IGRpc3BsYXk6IGJsb2NrOyBzaGFwZS1yZW5kZXJpbmc6IGF1dG87IiB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ieE1pZFlNaWQiPiAgPGNpcmNsZSBjeD0iNTAiIGN5PSI1MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYzNjM2MzIiBzdHJva2Utd2lkdGg9IjEwIiByPSIzNSIgc3Ryb2tlLWRhc2hhcnJheT0iMTY0LjkzMzYxNDMxMzQ2NDE1IDU2Ljk3Nzg3MTQzNzgyMTM4Ij4gICAgPGFuaW1hdGVUcmFuc2Zvcm0gYXR0cmlidXRlTmFtZT0idHJhbnNmb3JtIiB0eXBlPSJyb3RhdGUiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIiBkdXI9IjFzIiB2YWx1ZXM9IjAgNTAgNTA7MzYwIDUwIDUwIiBrZXlUaW1lcz0iMDsxIj48L2FuaW1hdGVUcmFuc2Zvcm0+ICA8L2NpcmNsZT48L3N2Zz4=\");\n  background-size: auto calc(min(50%, 400px));\n}",{"id":"86dc11c6-82a0-4a90-9fe3-beda4f0adf74"},{"id":"039a704d-d269-41cc-a0ef-94857bff88e3"},{"id":"e2540393-e8bb-452a-a77c-c94034b9b30a"}],"margin":[5,10],"align":"start","start":0,"end":2116536,"value":0}},{"type":"object","name":"panel.models.markup.HTML","id":"7f1280dd-b8ef-4bc1-a15a-ceb6f291854d","attributes":{"stylesheets":["\n:host(.pn-loading.pn-arc):before, .pn-loading.pn-arc:before {\n  background-image: url(\"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHN0eWxlPSJtYXJnaW46IGF1dG87IGJhY2tncm91bmQ6IG5vbmU7IGRpc3BsYXk6IGJsb2NrOyBzaGFwZS1yZW5kZXJpbmc6IGF1dG87IiB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ieE1pZFlNaWQiPiAgPGNpcmNsZSBjeD0iNTAiIGN5PSI1MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYzNjM2MzIiBzdHJva2Utd2lkdGg9IjEwIiByPSIzNSIgc3Ryb2tlLWRhc2hhcnJheT0iMTY0LjkzMzYxNDMxMzQ2NDE1IDU2Ljk3Nzg3MTQzNzgyMTM4Ij4gICAgPGFuaW1hdGVUcmFuc2Zvcm0gYXR0cmlidXRlTmFtZT0idHJhbnNmb3JtIiB0eXBlPSJyb3RhdGUiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIiBkdXI9IjFzIiB2YWx1ZXM9IjAgNTAgNTA7MzYwIDUwIDUwIiBrZXlUaW1lcz0iMDsxIj48L2FuaW1hdGVUcmFuc2Zvcm0+ICA8L2NpcmNsZT48L3N2Zz4=\");\n  background-size: auto calc(min(50%, 400px));\n}",{"id":"86dc11c6-82a0-4a90-9fe3-beda4f0adf74"},{"type":"object","name":"ImportedStyleSheet","id":"f1a810aa-9062-4e6f-af67-70c390f1e106","attributes":{"url":"https://cdn.holoviz.org/panel/1.2.0/dist/css/dataframe.css"}},{"id":"039a704d-d269-41cc-a0ef-94857bff88e3"},{"id":"e2540393-e8bb-452a-a77c-c94034b9b30a"}],"margin":[5,10],"align":"start","text":"&lt;table class=&quot;dataframe panel-df&quot;&gt;\n  &lt;thead&gt;\n    &lt;tr style=&quot;text-align: right;&quot;&gt;\n      &lt;th&gt;&lt;/th&gt;\n      &lt;th&gt;0&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;time&lt;/th&gt;\n      &lt;td&gt;01/31/2000 23:52:00&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;place&lt;/th&gt;\n      &lt;td&gt;Nevada&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;mag&lt;/th&gt;\n      &lt;td&gt;0.6&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;","disable_math":true}}]}},{"type":"object","name":"panel.models.comm_manager.CommManager","id":"b785e924-fcb7-49ad-8c87-60174a1e70d9","attributes":{"plot_id":"d020a905-a781-40c9-951d-e9a53535d366","comm_id":"9c32934b1c18429bab583a72a9a01681","client_comm_id":"360d58b97a1e4d7080e58b7ea84a8dbe"}}],"defs":[{"type":"model","name":"ReactiveHTML1"},{"type":"model","name":"FlexBox1","properties":[{"name":"align_content","kind":"Any","default":"flex-start"},{"name":"align_items","kind":"Any","default":"flex-start"},{"name":"flex_direction","kind":"Any","default":"row"},{"name":"flex_wrap","kind":"Any","default":"wrap"},{"name":"justify_content","kind":"Any","default":"flex-start"}]},{"type":"model","name":"FloatPanel1","properties":[{"name":"config","kind":"Any","default":{"type":"map"}},{"name":"contained","kind":"Any","default":true},{"name":"position","kind":"Any","default":"right-top"},{"name":"offsetx","kind":"Any","default":null},{"name":"offsety","kind":"Any","default":null},{"name":"theme","kind":"Any","default":"primary"},{"name":"status","kind":"Any","default":"normalized"}]},{"type":"model","name":"GridStack1","properties":[{"name":"mode","kind":"Any","default":"warn"},{"name":"ncols","kind":"Any","default":null},{"name":"nrows","kind":"Any","default":null},{"name":"allow_resize","kind":"Any","default":true},{"name":"allow_drag","kind":"Any","default":true},{"name":"state","kind":"Any","default":[]}]},{"type":"model","name":"drag1","properties":[{"name":"slider_width","kind":"Any","default":5},{"name":"slider_color","kind":"Any","default":"black"},{"name":"value","kind":"Any","default":50}]},{"type":"model","name":"click1","properties":[{"name":"terminal_output","kind":"Any","default":""},{"name":"debug_name","kind":"Any","default":""},{"name":"clears","kind":"Any","default":0}]},{"type":"model","name":"FastWrapper1","properties":[{"name":"object","kind":"Any","default":null},{"name":"style","kind":"Any","default":null}]},{"type":"model","name":"NotificationAreaBase1","properties":[{"name":"position","kind":"Any","default":"bottom-right"},{"name":"_clear","kind":"Any","default":0}]},{"type":"model","name":"NotificationArea1","properties":[{"name":"notifications","kind":"Any","default":[]},{"name":"position","kind":"Any","default":"bottom-right"},{"name":"_clear","kind":"Any","default":0},{"name":"types","kind":"Any","default":[{"type":"map","entries":[["type","warning"],["background","#ffc107"],["icon",{"type":"map","entries":[["className","fas fa-exclamation-triangle"],["tagName","i"],["color","white"]]}]]},{"type":"map","entries":[["type","info"],["background","#007bff"],["icon",{"type":"map","entries":[["className","fas fa-info-circle"],["tagName","i"],["color","white"]]}]]}]}]},{"type":"model","name":"Notification","properties":[{"name":"background","kind":"Any","default":null},{"name":"duration","kind":"Any","default":3000},{"name":"icon","kind":"Any","default":null},{"name":"message","kind":"Any","default":""},{"name":"notification_type","kind":"Any","default":null},{"name":"_destroyed","kind":"Any","default":false}]},{"type":"model","name":"TemplateActions1","properties":[{"name":"open_modal","kind":"Any","default":0},{"name":"close_modal","kind":"Any","default":0}]},{"type":"model","name":"BootstrapTemplateActions1","properties":[{"name":"open_modal","kind":"Any","default":0},{"name":"close_modal","kind":"Any","default":0}]},{"type":"model","name":"MaterialTemplateActions1","properties":[{"name":"open_modal","kind":"Any","default":0},{"name":"close_modal","kind":"Any","default":0}]}]}};
+  var render_items = [{"docid":"5eb1137f-d203-4c34-9f76-0392f1cb8bd0","roots":{"d020a905-a781-40c9-951d-e9a53535d366":"e9392383-0ba0-4cf3-ac0a-e0245a0f83e0"},"root_ids":["d020a905-a781-40c9-951d-e9a53535d366"]}];
+  var docs = Object.values(docs_json)
+  if (!docs) {
+    return
+  }
+  const py_version = docs[0].version.replace('rc', '-rc.').replace('.dev', '-dev.')
+  const is_dev = py_version.indexOf("+") !== -1 || py_version.indexOf("-") !== -1
+  function embed_document(root) {
+    var Bokeh = get_bokeh(root)
+    Bokeh.embed.embed_items_notebook(docs_json, render_items);
+    for (const render_item of render_items) {
+      for (const root_id of render_item.root_ids) {
+	const id_el = document.getElementById(root_id)
+	if (id_el.children.length && (id_el.children[0].className === 'bk-root')) {
+	  const root_el = id_el.children[0]
+	  root_el.id = root_el.id + '-rendered'
+	}
+      }
+    }
+  }
+  function get_bokeh(root) {
+    if (root.Bokeh === undefined) {
+      return null
+    } else if (root.Bokeh.version !== py_version && !is_dev) {
+      if (root.Bokeh.versions === undefined || !root.Bokeh.versions.has(py_version)) {
+	return null
+      }
+      return root.Bokeh.versions.get(py_version);
+    } else if (root.Bokeh.version === py_version) {
+      return root.Bokeh
+    }
+    return null
+  }
+  function is_loaded(root) {
+    var Bokeh = get_bokeh(root)
+    return (Bokeh != null && Bokeh.Panel !== undefined)
+  }
+  if (is_loaded(root)) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (is_loaded(root)) {
+        clearInterval(timer);
+        embed_document(root);
+      } else if (document.readyState == "complete") {
+        attempts++;
+        if (attempts > 200) {
+          clearInterval(timer);
+	  var Bokeh = get_bokeh(root)
+	  if (Bokeh == null || Bokeh.Panel == null) {
+            console.warn("Panel: ERROR: Unable to run Panel code because Bokeh or Panel library is missing");
+	  } else {
+	    console.warn("Panel: WARNING: Attempting to render but not all required libraries could be resolved.")
+	    embed_document(root)
+	  }
+        }
+      }
+    }, 25, root)
+  }
+})(window);</script></div></div>
+</div>
+<p>As you can see, this process is slightly more laborious than <code class="docutils literal notranslate"><span class="pre">.interactive()</span></code> or even <code class="docutils literal notranslate"><span class="pre">pn.bind</span></code>, but doing it in this way should help you see how everything fits together and can be useful to more precisely control callbacks that update particular parameters or the contents of a larger layout.</p>
+</section>
+<section id="moving-onwards">
+<h2>Moving onwards<a class="headerlink" href="#moving-onwards" title="Permalink to this heading">#</a></h2>
+<p>Now that we have learned low-level ways to link parameters between displayed objects and build interactive components, we can start building more highly customized apps and dashboards. Before we move on to plotting and visualization let us quickly use what we have learned by adding interactivity to <a class="reference internal" href="exercises/Building_a_Dashboard.html"><span class="doc std std-doc">the dashboard we built in the previous exercise</span></a>.</p>
+</section>
+<div id="scroller-right">This web page was generated from a Jupyter notebook and not all interactivity will work on this website. <a href="https://raw.githubusercontent.com/holoviz/holoviz/main/examples/../tutorial/08_Custom_Dashboards.ipynb">Right click to download and run locally</a> for full Python-backed interactivity.</div><hr class="docutils"/>
+<p><a class="reference external" href="https://raw.githubusercontent.com/holoviz/holoviz/main/examples/tutorial/08_Custom_Dashboards.ipynb">Right click to download this notebook from GitHub.</a></p>
+</section>
+</article>
+<footer class="bd-footer-article">
+<div class="footer-article-items footer-article__inner">
+<div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+<a class="left-prev" href="Custom_Interactivity.html" title="previous page">
+<i class="fa-solid fa-angle-left"></i>
+<div class="prev-next-info">
+<p class="prev-next-subtitle">previous</p>
+<p class="prev-next-title">Custom Interactivity</p>
+</div>
+</a>
+<a class="right-next" href="Advanced_Dashboards.html" title="next page">
+<div class="prev-next-info">
+<p class="prev-next-subtitle">next</p>
+<p class="prev-next-title">Advanced Dashboards</p>
+</div>
+<i class="fa-solid fa-angle-right"></i>
+</a>
+</div></div>
+</div>
+</footer>
+</div>
+<div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+<div class="sidebar-secondary-item"><div class="github-star-badge">
+<a href="https://github.com/holoviz/holoviz">
+<img alt="Support us with a star on GitHub" src="https://img.shields.io/github/stars/holoviz/holoviz?style=social&amp;label=Star%20on%20%20GitHub%E2%AD%90"/>
+</a>
+</div></div>
+<div class="sidebar-secondary-item">
+<div class="page-toc tocsection onthispage">
+<i class="fa-solid fa-list"></i> On this page
+  </div>
+<nav class="bd-toc-nav page-toc">
+<ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#widgets-and-reactive-components">Widgets and reactive components</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">Exercise</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#callbacks">Callbacks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#moving-onwards">Moving onwards</a></li>
+</ul>
+</nav></div>
+</div></div>
+</div>
+<footer class="bd-footer-content">
+</footer>
+</main>
+</div>
+</div>
+<!-- Scripts loaded after <body> so the DOM is not blocked -->
+<script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+<footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+<div class="footer-items__start">
+<div class="footer-item"><p class="nbsite-copyright-last-updated">
+<span class="copyright">
+            © Copyright 2017-2023 Holoviz contributors.
+    </span>
+<span class="last-updated">Last updated on 2023-12-04.</span><br/>
+</p></div>
+</div>
+<div class="footer-items__end">
+<div class="footer-item"><p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.13.3.
+</p></div>
+</div>
+</div>
+</footer>
+</body>
+</html>
